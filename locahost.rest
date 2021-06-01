@@ -1,0 +1,46 @@
+http://localhost:3000/ping
+
+###
+
+POST http://localhost:3000/ping
+Content-Type: application/json
+
+{
+  "name": "Isabele"
+}
+
+### Get all class
+GET http://localhost:3000/class
+
+### Create Class
+POST http://localhost:3000/class
+Content-Type: application/json
+
+{
+  "name": "Cruz",
+  "startDate": "2021-01-25",
+  "endDate": "2021-07-31",
+  "module": "8"
+}
+
+### Update Class
+PUT http://localhost:3000/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
+Content-Type: application/json
+
+{
+  "name": "Epis",
+  "startDate": "2021-01-25",
+  "endDate": "2021-07-31",
+  "module": "8"
+}
+
+### Delete Class
+DELETE http://localhost:3000/class/94a0930c-a255-4051-9226-5b9f812c23fa
+Content-Type: application/json
+
+{
+  "name": "Epis",
+  "startDate": "2021-01-25",
+  "endDate": "2021-07-31",
+  "module": "8"
+}
