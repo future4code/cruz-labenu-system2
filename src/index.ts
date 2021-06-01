@@ -1,2 +1,2 @@
 import './database/index'
-console.log('oi')
+console.log('ola')
