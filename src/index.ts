@@ -1,2 +1,3 @@
-import './database/index'
-console.log('hiii!!!')
+import {app} from './server'
+
+app.listen(3000, () => console.log('server on!'))
