@@ -1,33 +1,54 @@
 ## LabenuSystem:
 
-Você estuda na Labenu_ há tanto tempo que já parecem anos, não é? Então, hoje, vamos pedir para criar um sistema que represente o básico da nossa organização. 
+A Labenu agora tem um novo sistema de gerenciamento e visualiação de todo seus participantes!
 
-Ele deve possuir, ao menos, as 3 entidades importantes:
+Este app gerencia todo cadastro e visualização dos alunos, turmas, professores, habilidades, hobbies e muito mais de todo mundo!
 
-1. Estudantes 
+## Criadores
 
-    Representa estudantes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e os principais hobbies dele. 
+- Marcelino Sandroni
+- Isabelle Frederico
 
-2. Docente
+## Dependencias
 
-    Representa docentes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e todas as especialidades dele. Há 7 especialidades: React, Redux, CSS, Testes, Typescript, Programação Orientada a Objetos e Backend
+- React
+- Express 5
+- Knex
+- mysql
 
-3. Turma
+## Como rodar?
 
-    Toda turma é composta das seguintes características: id, nome, data de início, data de término, lista de professores responsáveis, uma lista de alunos e módulo atual em que a turma está.
+**Migrations**
+Após copiar o repositório, faça a migração das tabelas, é importante ter os dados do banco no arquivo `.env`. na raís do projeto, ou então definir qualquer outro banco de dados no arquivo `knexfile`.
 
-    O módulo pode assumir os valores de 1 a 7 ou `undefined`, indicando que as aulas dessa turma ainda não começaram. Para esse exercício, vamos considerar que existam dois tipos de turma: integral ou noturna. Há uma restrição para o nome das turmas noturnas: tem que terminar com `-na-night`.
+_Criando todos os banco de dados_
 
-As funcionalidades básicas são:
+```
+npx knex migration:latest
+```
 
-→ Criar estudante;
+_Inserindo no banco as informações básicas_
 
-→ Criar docente;
+```
+npx knex seed:run
+```
 
-→ Criar turma;
+**Scripts**
 
-→ Adicionar estudante na turma;
+Para rodar o projeto em desenvolvimento, utilize o comando dev:
 
-→ Adicionar docente na turma;
+```
+npm run dev
+```
 
-→ Pegar a idade de algum estudante a partir do id
+Para rodar em produção, construa tudo com o comando build:
+
+```
+npm run build
+```
+
+## Front end
+
+O front end é em React, com componetização de todos os elementos para melhor organização e produtividade.
+
+O modo view do app, está na pasta public, é iniciado junto com a aplicação, podendo se desejar, rodar separado..
