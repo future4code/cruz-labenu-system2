@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>API</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Labenu System API Version 1.0</h1>
+    <h2>End Points</h2>
+    
+    <div class="endpoint-container">
+      <div class="endpoint">
+        <h3>Class</h3>
+        <ul>
+          <li> <a href='/class'>GET /class</a> <strong>list all classes</strong></li>
+          <li> <a href='/class?name=cruz'>GET /class?name=cruz</a> <strong>search class by name</strong></li>
+          <li> <a href='/class'>POST /class</a> <strong>create a new class</strong></li>
+          <li> <a href='/class/name'>GET /class/name</a> <strong>list class details</strong></li>
+          <li> <a href='/class/name'>PUT /class/name</a> <strong>update class</strong></li>
+          <li> <a href='/class/name'>DELETE /class/name</a> <strong>delete class</strong></li>
+          <li> <a href='/class/students'>GET /class/students</a> <strong>list all students in class</strong></li>
+          <li> <a href='/class/teachers'>GET /class/teachers</a> <strong>list all teachers in class</strong></li>
+        </ul>
+      </div>
+      
+      <div class="endpoint">
+        <h3>Students</h3>
+        <ul>
+          <li> <a href='/students'>/students</a></li>
+        </ul>
+      </div>
+        
+      <div class="endpoint">
+        <h3>Teachers</h3>
+        <ul>
+          <li> <a href='/teachers'>/teachers</a></li>
+        </ul>
+      </div>
+
+      <div class="endpoint">
+        <h3>Hobbies</h3>
+        <ul>
+          <li> <a href='/hobbies'>/hobbies</a></li>
+        </ul>
+      </div>
+
+      <div class="endpoint">
+        <h3>Skills</h3>
+        <ul>
+          <li> <a href='/skills'>/skills</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

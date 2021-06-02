@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  width: clamp(300px, 80%, 1280px);
+  margin: auto;
+  padding-top: min(5%, 50px);
+}
+
+.endpoint-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.endpoint {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+  line-height: 3;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+
+li {
+  display: flex;
+  flex-flow: column;
+}
+
+a {
+}
+
+strong {
+}
