@@ -3,11 +3,17 @@ import {
   createClass,
   deleteClass,
   getAllClass,
+  getClassDetails,
   updateClass
 } from '../database/class'
 import {classValidator} from '../utils/validator'
 import {v4 as uuid} from 'uuid'
 import {ApiError} from '../utils/ApiError'
+import {
+  getAllStudentsByClassNameOrId,
+  getAllTeachersByClassNameOrId
+} from '../database/class'
+import {getFullHostName} from '../utils/requestProps'
 
 export const classRoute = Router()
 
@@ -61,4 +67,35 @@ classRoute.delete('/:id', async (req, res) => {
   }
 
   res.send({message: 'deleted!'})
+})
+
+classRoute.get('/:name', async (req, res) => {
+  const {name} = req.params
+
+  const studentsInClass = await getClassDetails(name)
+
+  res.send(studentsInClass)
+})
+
+classRoute.get('/:name/students', async (req, res) => {
+  const {name} = req.params
+
+  const studentsInClass = await getAllStudentsByClassNameOrId(name)
+
+  const studentEndPoint = getFullHostName(req) + '/student'
+
+  const studentsInClassWithLink = studentsInClass.map(student => ({
+    ...student,
+    link: `${studentEndPoint}/${student.id}`
+  }))
+
+  res.send(studentsInClassWithLink)
+})
+
+classRoute.get('/:name/teachers', async (req, res) => {
+  const {name} = req.params
+
+  const studentsInClass = await getAllTeachersByClassNameOrId(name)
+
+  res.send(studentsInClass)
 })

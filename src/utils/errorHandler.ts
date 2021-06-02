@@ -10,6 +10,7 @@ export async function errorHandler(
   if (error instanceof ApiError) {
     res.status(error.code).send(error.message)
   } else {
+    console.log({error})
     res.status(500).send('Unknown error, callme about it please')
   }
 }
