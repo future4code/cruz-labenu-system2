@@ -5,7 +5,7 @@ import {
     updateStudentHobbies,
     deleteStudentHobbies
 } from '../database/studentHobbies'
-import { relationHobbieValidator } from '../utils/validator'
+import { relationshipHobbieValidator } from '../utils/validator'
 import { ApiError } from '../utils/ApiError'
 
 export const studentHobbiesRoute = Router()
@@ -21,7 +21,7 @@ studentHobbiesRoute.get('/', async (req, res) => {
 })
 
 studentHobbiesRoute.post('/', async (req, res) => {
-    const studentHobbieCheck = relationHobbieValidator(req.body)
+    const studentHobbieCheck = relationshipHobbieValidator(req.body)
 
     const newStudentHobbies = {
         ...studentHobbieCheck
@@ -36,7 +36,7 @@ studentHobbiesRoute.post('/', async (req, res) => {
 
 studentHobbiesRoute.put('/:student_id', (req, res) => {
     const { student_id } = req.params
-    const studentHobbieCheck = relationHobbieValidator(req.body)
+    const studentHobbieCheck = relationshipHobbieValidator(req.body)
 
     const studentHobbieUpdate = updateStudentHobbies(student_id, studentHobbieCheck)
 

@@ -62,9 +62,9 @@ export const hobbieAndSkillValidator = (newData: Omit<Hobbies, 'id'>) => {
   return newData
 }
 
-export const relationSkillValidator = (newData: TeacherSkills) => {
+export const relationshipSkillValidator = (newData: TeacherSkills) => {
   const { teacher_id, skill_id } = newData
-  if (!teacher_id || skill_id) {
+  if (!teacher_id || !skill_id) {
     throw ApiError.wrongParams(
       'Please inform teacher id and skill id!'
     )
@@ -72,9 +72,9 @@ export const relationSkillValidator = (newData: TeacherSkills) => {
   return newData
 }
 
-export const relationHobbieValidator = (newData: StudentHobbies) => {
+export const relationshipHobbieValidator = (newData: StudentHobbies) => {
   const { student_id, hobbies_id } = newData
-  if (!student_id || hobbies_id) {
+  if (!student_id || !hobbies_id) {
     throw ApiError.wrongParams(
       'Please inform student id and hobbies id!'
     )

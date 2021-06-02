@@ -68,29 +68,13 @@ Content-Type: application/json
   {
     "teacher_id": "ddd03ba5-f425-41da-bb93-547329cdba6e",
     "skill_id": "0a83100f-4dfb-4d8f-aa48-5980d046cb37",
-  },
-  {
-    "teacher_id": "0740143c-a00a-4173-a4cc-e951fda3515b",
-    "skill_id": "3b848408-2280-4c3e-976a-4c51290a6e3e",
-  },
-  {
-    "teacher_id": "ddd03ba5-f425-41da-bb93-547329cdba6e",
-    "skill_id": "0a83100f-4dfb-4d8f-aa48-5980d046cb37",
   }
 
 ### Create EstudantSkills
-POST http://localhost:3000/api/teacheSkills
+POST http://localhost:3000/api/studentHobbies
 Content-Type: application/json
 
   {
     "student_id": "283c5abf-ff3f-4450-849c-f715a38e4840",
     "hobbies_id": "320ddd71-3a77-4fd5-a2a6-61333b03edd8",
   },
-  {
-    "student_id": "b95e083c-785f-414a-b99b-913bf01d8072",
-    "hobbies_id": "407a7280-d7d9-41ab-916d-840bf2220e79",
-  },
-  {
-    "student_id": "283c5abf-ff3f-4450-849c-f715a38e4840",
-    "hobbies_id": "320ddd71-3a77-4fd5-a2a6-61333b03edd8",
-  }

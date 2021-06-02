@@ -5,7 +5,7 @@ import {
     updateTeacherSkills,
     deleteTeacherSkills
 } from '../database/teacherSkills'
-import { relationSkillValidator } from '../utils/validator'
+import { relationshipSkillValidator } from '../utils/validator'
 import { ApiError } from '../utils/ApiError'
 
 export const teacherSkillsRoute = Router()
@@ -21,22 +21,22 @@ teacherSkillsRoute.get('/', async (req, res) => {
 })
 
 teacherSkillsRoute.post('/', async (req, res) => {
-    const teacherSkillCheck = relationSkillValidator(req.body)
+    const teacherSkillCheck = relationshipSkillValidator(req.body)
 
-    // const newTeacherSkills = {
-    //     ...teacherSkillCheck
-    // }
+    const newTeacherSkills = {
+        ...teacherSkillCheck
+    }
 
-    const teacherSkillCreated = createTeacherSkills(teacherSkillCheck)
+    const teacherSkillCreated = createTeacherSkills(newTeacherSkills)
 
     if (!teacherSkillCreated) throw ApiError.internal()
 
-    res.status(201).send(teacherSkillCheck)
+    res.status(201).send(newTeacherSkills)
 })
 
 teacherSkillsRoute.put('/:teacher_id', (req, res) => {
     const { teacher_id } = req.params
-    const teacherSkillCheck = relationSkillValidator(req.body)
+    const teacherSkillCheck = relationshipSkillValidator(req.body)
 
     const teacherSkillUpdate = updateTeacherSkills(teacher_id, teacherSkillCheck)
 
