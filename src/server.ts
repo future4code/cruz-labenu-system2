@@ -7,17 +7,22 @@ import {teacherRoute} from './routes/teacher'
 import {hobbieRoute} from './routes/hobbies'
 import {skillsRoute} from './routes/skills'
 import {errorHandler} from './utils/errorHandler'
+import {notFound} from './routes/notFound'
 
 export const app = express()
+export const api = express()
 
 app.use(express.json())
 app.use(cors())
 app.use('/', express.static('public/app/build'))
-app.use('/api', express.static('public/api'))
-app.use('/ping', pingRoute)
-app.use('/class', classRoute)
-app.use('/student', studentRoute)
-app.use('/teacher', teacherRoute)
-app.use('/hobbies', hobbieRoute)
-app.use('/skills', skillsRoute)
+app.use('/api', api)
+app.use(notFound)
 app.use(errorHandler)
+
+api.use('/', express.static('public/api'))
+api.use('/ping', pingRoute)
+api.use('/class', classRoute)
+api.use('/student', studentRoute)
+api.use('/teacher', teacherRoute)
+api.use('/hobbies', hobbieRoute)
+api.use('/skills', skillsRoute)

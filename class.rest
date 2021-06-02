@@ -2,12 +2,7 @@ http://localhost:3000/ping
 
 ###
 
-POST http://localhost:3000/ping
-Content-Type: application/json
-
-{
-  "name": "Isabele"
-}
+GET http://localhost:3000/ping
 
 ### Get all class
 GET http://localhost:3000/class
