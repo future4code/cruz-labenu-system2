@@ -44,3 +44,7 @@ Content-Type: application/json
   "endDate": "2021-07-31",
   "module": "8"
 }
+
+
+### Get all students
+GET http://localhost:3000/students

@@ -6,6 +6,8 @@ import {studentRoute} from './routes/student'
 import {teacherRoute} from './routes/teacher'
 import {hobbieRoute} from './routes/hobbies'
 import {skillsRoute} from './routes/skills'
+import {teacherSkillsRoute} from './routes/teacherSkills'
+import {studentHobbiesRoute} from './routes/studentHobbies'
 import {errorHandler} from './utils/errorHandler'
 
 export const app = express()
@@ -19,4 +21,6 @@ app.use('/student', studentRoute)
 app.use('/teacher', teacherRoute)
 app.use('/hobbies', hobbieRoute)
 app.use('/skills', skillsRoute)
+app.use('/teacheSkills', teacherSkillsRoute)
+app.use('/studentHobbies', studentHobbiesRoute)
 app.use(errorHandler)
