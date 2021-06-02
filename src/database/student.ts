@@ -15,6 +15,14 @@ export const getAllStudents = async () => {
   return allStudents
 }
 
+export const getStudentsByClassId = async (classId: string): Promise<any> => {
+    const result = await connection
+      .select("Student.id","Student.name", "Class.name")
+      .from('Student')
+      .where("Student.class_id", `${classId}`)
+      .join('Class', 'Student.class_id', 'Class.id')
+}
+
 export const createStudent = async (newStudent: Student) => {
   const student = studentTable().insert(newStudent)
   return student
