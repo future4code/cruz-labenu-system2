@@ -1,4 +1,4 @@
-import {Request} from 'express-serve-static-core'
+import {Request} from 'express'
 
 export const getFullHostName = (req: Request) =>
   `${req.protocol}://${req.hostname}`
