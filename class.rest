@@ -5,10 +5,13 @@ http://localhost:3000/ping
 GET http://localhost:3000/ping
 
 ### Get all class
-GET http://localhost:3000/class
+GET http://localhost:3000/api/class
+
+### Get all class with Params
+GET http://localhost:3000/api/class?module=6
 
 ### Create Class
-POST http://localhost:3000/class
+POST http://localhost:3000/api/class
 Content-Type: application/json
 
 {
@@ -19,16 +22,16 @@ Content-Type: application/json
 }
 
 ### All Students in Class By Name
-GET http://localhost:3000/class/cruz
+GET http://localhost:3000/api/class/cruz
 
 ### All Students in Class By Name
-GET http://localhost:3000/class/cruz/students
+GET http://localhost:3000/api/class/cruz/students
 
 ### All Teachers in Class By Name
-GET http://localhost:3000/class/cruz/teachers
+GET http://localhost:3000/api/class/cruz/teachers
 
 ### Update Class
-PUT http://localhost:3000/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
+PUT http://localhost:3000/api/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
 Content-Type: application/json
 
 {
@@ -39,4 +42,4 @@ Content-Type: application/json
 }
 
 ### Delete Class
-DELETE http://localhost:3000/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
+DELETE http://localhost:3000/api/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33

@@ -4,20 +4,65 @@ import {
   deleteClass,
   getAllClass,
   getClassDetails,
-  updateClass
-} from '../database/class'
-import {classValidator} from '../utils/validator'
-import {v4 as uuid} from 'uuid'
-import {ApiError} from '../utils/ApiError'
-import {
+  updateClass,
   getAllStudentsByClassNameOrId,
-  getAllTeachersByClassNameOrId
+  getAllTeachersByClassNameOrId,
+  searchClassByName,
+  searchClassByModule
 } from '../database/class'
+import {v4 as uuid} from 'uuid'
+import Ajv, {JSONSchemaType} from 'ajv'
+import {classValidator} from '../utils/validator'
+import {ApiError} from '../utils/ApiError'
 import {getFullHostName} from '../utils/requestProps'
 
 export const classRoute = Router()
 
 classRoute.get('/', async (req, res) => {
+  const hasQueries = Object.keys(req.query).length
+  const query = {...req.query}
+
+  if (hasQueries) {
+    const ajv = new Ajv({allErrors: true})
+
+    interface QueryProps {
+      name?: string
+      module?: string | number
+    }
+
+    const schema: JSONSchemaType<QueryProps> = {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string',
+          nullable: true
+        },
+        module: {
+          type: ['integer', 'string'],
+          pattern: '^[0-7]$',
+          nullable: true
+        }
+      },
+      additionalProperties: false
+    }
+
+    const validate = ajv.compile(schema)
+
+    if (!validate(query)) {
+      console.log(validate.errors)
+      throw ApiError.badRequest('Informa only name or module')
+    }
+
+    if (query.name) {
+      const classResults = await searchClassByName(query.name as string)
+      return res.send(classResults)
+    }
+    if (query.module) {
+      const classResults = await searchClassByModule(Number(query.module))
+      return res.send(classResults)
+    }
+  }
+
   const allClasses = await getAllClass()
 
   if (!allClasses.length) {
