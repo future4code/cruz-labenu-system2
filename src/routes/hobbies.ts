@@ -1,17 +1,18 @@
 import {Router} from 'express'
 import {
-  createHobbie,
-  deleteHobbie,
+  createHobbies,
+  deleteHobbies,
   getAllHobbies,
-  updateHobbie
+  updateHobbies,
+  getHobbiesDetails
 } from '../database/hobbies'
-import {hobbieAndSkillValidator} from '../utils/validator'
+import {hobbiesAndSkillValidator} from '../utils/validator'
 import {v4 as uuid} from 'uuid'
 import {ApiError} from '../utils/ApiError'
 
-export const hobbieRoute = Router()
+export const hobbiesRoute = Router()
 
-hobbieRoute.get('/', async (req, res) => {
+hobbiesRoute.get('/', async (req, res) => {
   const allHobbies = await getAllHobbies()
 
   if (!allHobbies.length) {
@@ -21,41 +22,54 @@ hobbieRoute.get('/', async (req, res) => {
   }
 })
 
-hobbieRoute.post('/', async (req, res) => {
-  const checkHobbie = hobbieAndSkillValidator(req.body)
-  const id = uuid()
+hobbiesRoute.get('/:name', async (req, res) => {
+  const {name} = req.params
 
-  const newHobbie = {
-    id,
-    ...checkHobbie
+  const studentsHobbies = await getHobbiesDetails(name)
+
+  if(!studentsHobbies){
+    res.send({message: "No students practice this hobby yet"})
   }
+  res.send(studentsHobbies)
 
-  const hobbieCreated = await createHobbie(newHobbie)
-
-  if (!hobbieCreated) throw ApiError.internal()
-
-  res.status(201).send(newHobbie)
+  
 })
 
-hobbieRoute.put('/:id', async (req, res) => {
+hobbiesRoute.post('/', async (req, res) => {
+  const checkHobbies = hobbiesAndSkillValidator(req.body)
+  const id = uuid()
+
+  const newHobbies = {
+    id,
+    ...checkHobbies
+  }
+
+  const hobbiesCreated = await createHobbies(newHobbies)
+
+  if (!hobbiesCreated) throw ApiError.internal()
+
+  res.status(201).send(newHobbies)
+})
+
+hobbiesRoute.put('/:id', async (req, res) => {
   const {id} = req.params
-  const checkHobbie = hobbieAndSkillValidator(req.body)
+  const checkHobbies = hobbiesAndSkillValidator(req.body)
 
-  const hobbieUpdated = await updateHobbie(id, checkHobbie)
+  const hobbiesUpdated = await updateHobbies(id, checkHobbies)
 
-  if (!hobbieUpdated) {
-    throw ApiError.badRequest('Cant found Hobbie')
+  if (!hobbiesUpdated) {
+    throw ApiError.badRequest('Cant found Hobbies')
   }
   res.send({message: 'updated!'})
 })
 
-hobbieRoute.delete('/:id', async (req, res) => {
+hobbiesRoute.delete('/:id', async (req, res) => {
   const {id} = req.params
 
-  const hobbieDeleted = await deleteHobbie(id)
+  const hobbiesDeleted = await deleteHobbies(id)
 
-  if (!hobbieDeleted) {
-    throw ApiError.badRequest('Cant found Hobbie')
+  if (!hobbiesDeleted) {
+    throw ApiError.badRequest('Cant found Hobbies')
   }
 
   res.send({message: 'deleted!'})

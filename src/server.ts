@@ -4,7 +4,7 @@ import {pingRoute} from './routes/ping'
 import {classRoute} from './routes/class'
 import {studentRoute} from './routes/student'
 import {teacherRoute} from './routes/teacher'
-import {hobbieRoute} from './routes/hobbies'
+import {hobbiesRoute} from './routes/hobbies'
 import {skillsRoute} from './routes/skills'
 import {teacherSkillsRoute} from './routes/teacherSkills'
 import {studentHobbiesRoute} from './routes/studentHobbies'
@@ -23,6 +23,7 @@ app.use(errorHandler)
 
 api.use('/', express.static('public/api'))
 api.use('/ping', pingRoute)
+
 api.use(['/class', '/turma'], classRoute)
 api.use(['/students', '/estudantes', '/alunos'], studentRoute)
 api.use(['/teachers', '/professores', 'instrutores'], teacherRoute)
