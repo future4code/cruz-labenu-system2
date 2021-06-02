@@ -23,15 +23,15 @@ teacherSkillsRoute.get('/', async (req, res) => {
 teacherSkillsRoute.post('/', async (req, res) => {
     const teacherSkillCheck = relationSkillValidator(req.body)
 
-    const newTeacherSkills = {
-        ...teacherSkillCheck
-    }
+    // const newTeacherSkills = {
+    //     ...teacherSkillCheck
+    // }
 
-    const teacherSkillCreated = createTeacherSkills(newTeacherSkills)
+    const teacherSkillCreated = createTeacherSkills(teacherSkillCheck)
 
     if (!teacherSkillCreated) throw ApiError.internal()
 
-    res.status(201).send(newTeacherSkills)
+    res.status(201).send(teacherSkillCheck)
 })
 
 teacherSkillsRoute.put('/:teacher_id', (req, res) => {
