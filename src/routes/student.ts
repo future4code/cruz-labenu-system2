@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import {
   getAllStudents,
-  getStudentsByClassId,
   createStudent,
   updateStudent,
   deleteStudent
@@ -20,20 +19,6 @@ studentRoute.get('/', async (req, res) => {
   } else {
     res.send(allStudents)
   }
-})
-
-studentRoute.get("", async (req, res) => {
-  const classId = req.query.classId as string;
-
-  if (!classId) {
-    throw ApiError.wrongParams(
-      'Please inform a valid id class!'
-    )
-  }
-
-  const students = await getStudentsByClassId(classId);
-
-  res.status(201).send(students)
 })
 
   studentRoute.post('/', async (req, res) => {

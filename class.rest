@@ -43,3 +43,4 @@ Content-Type: application/json
 
 ### Delete Class
 DELETE http://localhost:3000/api/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
+

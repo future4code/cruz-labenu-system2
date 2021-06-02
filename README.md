@@ -9,6 +9,28 @@ Este app gerencia todo cadastro e visualização dos alunos, turmas, professores
 - Marcelino Sandroni
 - Isabelle Frederico
 
+## Estrutura dos endpints
+
+# Front end
+Acessando a página inicial da aplicação, está o front end feito em REACT, esta rota vem da pasta `public/app/build` da Raiz do projeto.
+
+![Screenshot from 2021-06-02 11-49-17](https://user-images.githubusercontent.com/7757352/120502199-99571b00-c398-11eb-882c-00d08e74ce93.png)
+
+# API catalog
+Acessando o endpint /api, é onde está todos os endpoints do servidor, na página inicial `/api`, ha um catálogo simples de toda estrutura com rotas e opções da API.
+
+![Screenshot from 2021-06-02 12-03-37](https://user-images.githubusercontent.com/7757352/120504583-a5dc7300-c39a-11eb-8b65-aa25c214bbf2.png)
+
+
+# Principais entidades
+As principais entidades e endepoints utilizados são os seguintes:
+
+* /api/class
+* /api/students
+* /api/teachers
+* /api/hobbies
+* /api/skills
+
 ## Dependencias
 
 - React
