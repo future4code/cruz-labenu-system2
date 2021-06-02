@@ -4,6 +4,8 @@ import {pingRoute} from './routes/ping'
 import {classRoute} from './routes/class'
 import {studentRoute} from './routes/student'
 import {teacherRoute} from './routes/teacher'
+import {hobbieRoute} from './routes/hobbies'
+import {skillsRoute} from './routes/skills'
 import {errorHandler} from './utils/errorHandler'
 
 export const app = express()
@@ -15,4 +17,6 @@ app.use('/ping', pingRoute)
 app.use('/class', classRoute)
 app.use('/student', studentRoute)
 app.use('/teacher', teacherRoute)
+app.use('/hobbies', hobbieRoute)
+app.use('/skills', skillsRoute)
 app.use(errorHandler)

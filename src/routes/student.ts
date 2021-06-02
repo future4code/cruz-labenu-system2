@@ -1,13 +1,14 @@
-import {Router} from 'express'
+import { Router } from 'express'
 import {
   getAllStudents,
+  getStudentsByClassId,
   createStudent,
   updateStudent,
   deleteStudent
 } from '../database/student'
-import {userValidator} from '../utils/validator'
-import {v4 as uuid} from 'uuid'
-import {ApiError} from '../utils/ApiError'
+import { userValidator } from '../utils/validator'
+import { v4 as uuid } from 'uuid'
+import { ApiError } from '../utils/ApiError'
 
 export const studentRoute = Router()
 
@@ -21,7 +22,21 @@ studentRoute.get('/', async (req, res) => {
   }
 })
 
-studentRoute.post('/', async (req, res) => {
+studentRoute.get("", async (req, res) => {
+  const classId = req.query.classId as string;
+
+  if (!classId) {
+    throw ApiError.wrongParams(
+      'Please inform a valid id class!'
+    )
+  }
+
+  const students = await getStudentsByClassId(classId);
+
+  res.status(201).send(students)
+})
+
+  studentRoute.post('/', async (req, res) => {
   const studentCheck = userValidator(req.body)
   const id = uuid()
 
@@ -37,8 +52,8 @@ studentRoute.post('/', async (req, res) => {
   res.status(201).send(newStudent)
 })
 
-studentRoute.put('/:id', (req, res) => {
-  const {id} = req.params
+  studentRoute.put('/:id', (req, res) => {
+  const { id } = req.params
   const studentCheck = userValidator(req.body)
 
   const studentUpdate = updateStudent(id, studentCheck)
@@ -47,11 +62,11 @@ studentRoute.put('/:id', (req, res) => {
     throw ApiError.badRequest('Cant found student')
   }
 
-  res.send({message: 'updated!'})
+  res.send({ message: 'updated!' })
 })
 
-studentRoute.delete('/:id', (req, res) => {
-  const {id} = req.params
+  studentRoute.delete('/:id', (req, res) => {
+  const { id } = req.params
 
   const studentDeleted = deleteStudent(id)
 
@@ -59,5 +74,5 @@ studentRoute.delete('/:id', (req, res) => {
     throw ApiError.badRequest('Cant found student')
   }
 
-  res.send({message: 'deleted!'})
+  res.send({ message: 'deleted!' })
 })

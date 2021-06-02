@@ -1,5 +1,6 @@
 import {Class} from '../database/class'
 import {Student} from '../database/student'
+import {Hobbies} from '../database/hobbies'
 import {ApiError} from './ApiError'
 
 export const classValidator = (newClass: Omit<Class, 'id'>) => {
@@ -29,10 +30,10 @@ export const dateValidator = (date: string) => {
   }
 }
 
-// student
+// student and teachers
 
-export const userValidator = (newStudent: Omit<Student, 'id'>) => {
-  const {name, email, birthDate, class_id} = newStudent
+export const userValidator = (newUser: Omit<Student, 'id'>) => {
+  const {name, email, birthDate, class_id} = newUser
   if (!name || !email || !birthDate || !class_id) {
     throw ApiError.wrongParams(
       'Please inform name, email, birthDate and class!'
@@ -43,5 +44,18 @@ export const userValidator = (newStudent: Omit<Student, 'id'>) => {
     throw ApiError.wrongParams('Please enter a valid date of birth')
   }
 
-  return newStudent
+  return newUser
 }
+
+// hobbies and skills
+
+export const hobbieAndSkillValidator = (newData: Omit<Hobbies, 'id'>) => {
+  const {name} = newData
+  if (!name) {
+    throw ApiError.wrongParams(
+      'Please inform name!'
+    )
+  }
+  return newData
+}
+
