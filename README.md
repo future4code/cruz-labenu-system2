@@ -19,7 +19,8 @@ Acessando a página inicial da aplicação, está o front end feito em REACT, es
 # API catalog
 Acessando o endpint /api, é onde está todos os endpoints do servidor, na página inicial `/api`, ha um catálogo simples de toda estrutura com rotas e opções da API.
 
-![Screenshot from 2021-06-02 11-18-27](https://user-images.githubusercontent.com/7757352/120501858-5432e900-c398-11eb-9701-96fc00ddd677.png)
+![Screenshot from 2021-06-02 12-03-37](https://user-images.githubusercontent.com/7757352/120504583-a5dc7300-c39a-11eb-8b65-aa25c214bbf2.png)
+
 
 # Principais entidades
 As principais entidades e endepoints utilizados são os seguintes:
