@@ -10,6 +10,21 @@ export type Class = {
   module: string
 }
 
+export type ClassSearchProps = {
+  name?: string
+  module?: number
+}
+
+type Gender = 'male' | 'female'
+
+export type StudentSearchProps = {
+  name: string
+  gender: Gender
+  age: number
+  ageMin: number
+  ageMax: number
+}
+
 export const getAllClass = async () => classTable()
 
 export const createClass = async (newClass: Class) =>
@@ -40,7 +55,6 @@ export const getClassDetails = async (name: string) => {
       ...classTeachersCount
     }
   }
-  return classStudentsCount
 }
 
 export const getAllStudentsByClassNameOrId = async (identifier: string) => {
@@ -62,3 +76,15 @@ export const getAllTeachersByClassNameOrId = async (identifier: string) => {
 
   return allTeachersInClass
 }
+
+export const searchClassByName = async (name: string) =>
+  classTable().where('name', 'like', `%${name}%`)
+
+export const getFilteredStudentsInClass = async (
+  searchParams: Partial<ClassSearchProps>
+) => {
+  const searchStudentsResult = 10
+}
+
+export const searchClassByModule = async (module: number) =>
+  classTable().where({module})

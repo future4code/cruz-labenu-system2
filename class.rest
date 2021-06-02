@@ -5,10 +5,13 @@ http://localhost:3000/ping
 GET http://localhost:3000/ping
 
 ### Get all class
-GET http://localhost:3000/class
+GET http://localhost:3000/api/class
+
+### Get all class with Params
+GET http://localhost:3000/api/class?module=6
 
 ### Create Class
-POST http://localhost:3000/class
+POST http://localhost:3000/api/class
 Content-Type: application/json
 
 {
@@ -19,16 +22,16 @@ Content-Type: application/json
 }
 
 ### All Students in Class By Name
-GET http://localhost:3000/class/cruz
+GET http://localhost:3000/api/class/cruz
 
 ### All Students in Class By Name
-GET http://localhost:3000/class/cruz/students
+GET http://localhost:3000/api/class/cruz/students
 
 ### All Teachers in Class By Name
-GET http://localhost:3000/class/cruz/teachers
+GET http://localhost:3000/api/class/cruz/teachers
 
 ### Update Class
-PUT http://localhost:3000/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
+PUT http://localhost:3000/api/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
 Content-Type: application/json
 
 {
@@ -39,20 +42,5 @@ Content-Type: application/json
 }
 
 ### Delete Class
-<<<<<<< HEAD:locahost.rest
-DELETE http://localhost:3000/class/94a0930c-a255-4051-9226-5b9f812c23fa
-Content-Type: application/json
+DELETE http://localhost:3000/api/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
 
-{
-  "name": "Epis",
-  "startDate": "2021-01-25",
-  "endDate": "2021-07-31",
-  "module": "8"
-}
-
-
-### Get all students
-GET http://localhost:3000/students
-=======
-DELETE http://localhost:3000/class/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
->>>>>>> master:class.rest
