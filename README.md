@@ -25,6 +25,9 @@ Acessando o endpint /api, é onde está todos os endpoints do servidor, na pági
 # Principais entidades
 As principais entidades e endepoints utilizados são os seguintes:
 
+![Screenshot from 2021-06-02 18-23-24](https://user-images.githubusercontent.com/7757352/120554127-c07d0f00-c3cf-11eb-8fd6-f4bc5ece789a.png)
+
+
 * /api/class
 * /api/students
 * /api/teachers
