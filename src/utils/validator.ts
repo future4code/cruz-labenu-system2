@@ -52,7 +52,7 @@ export const userValidator = (newUser: Omit<Student, 'id'>) => {
 
 // hobbies and skills
 
-export const hobbieAndSkillValidator = (newData: Omit<Hobbies, 'id'>) => {
+export const hobbiesAndSkillValidator = (newData: Omit<Hobbies, 'id'>) => {
   const { name } = newData
   if (!name) {
     throw ApiError.wrongParams(
@@ -72,7 +72,7 @@ export const relationshipSkillValidator = (newData: TeacherSkills) => {
   return newData
 }
 
-export const relationshipHobbieValidator = (newData: StudentHobbies) => {
+export const relationshipHobbiesValidator = (newData: StudentHobbies) => {
   const { student_id, hobbies_id } = newData
   if (!student_id || !hobbies_id) {
     throw ApiError.wrongParams(

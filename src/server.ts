@@ -4,7 +4,7 @@ import {pingRoute} from './routes/ping'
 import {classRoute} from './routes/class'
 import {studentRoute} from './routes/student'
 import {teacherRoute} from './routes/teacher'
-import {hobbieRoute} from './routes/hobbies'
+import {hobbiesRoute} from './routes/hobbies'
 import {skillsRoute} from './routes/skills'
 import {teacherSkillsRoute} from './routes/teacherSkills'
 import {studentHobbiesRoute} from './routes/studentHobbies'
@@ -26,5 +26,5 @@ api.use('/ping', pingRoute)
 api.use('/class', classRoute)
 api.use('/student', studentRoute)
 api.use('/teacher', teacherRoute)
-api.use('/hobbies', hobbieRoute)
+api.use('/hobbies', hobbiesRoute)
 api.use('/skills', skillsRoute)

@@ -1,13 +1,14 @@
-import {Router} from 'express'
+import { Router } from 'express'
 import {
   createSkill,
+  getSkillsDetails,
   deleteSkill,
   getAllSkills,
   updateSkill
 } from '../database/skills'
-import {hobbieAndSkillValidator} from '../utils/validator'
-import {v4 as uuid} from 'uuid'
-import {ApiError} from '../utils/ApiError'
+import { hobbiesAndSkillValidator } from '../utils/validator'
+import { v4 as uuid } from 'uuid'
+import { ApiError } from '../utils/ApiError'
 
 export const skillsRoute = Router()
 
@@ -21,8 +22,21 @@ skillsRoute.get('/', async (req, res) => {
   }
 })
 
+skillsRoute.get('/:name', async (req, res) => {
+  const { name } = req.params
+
+  const teacherSkills = await getSkillsDetails(name)
+
+  if (!teacherSkills) {
+    res.send({ message: "No teachers has this skill yet" })
+  }
+  res.send(teacherSkills)
+
+
+})
+
 skillsRoute.post('/', async (req, res) => {
-  const checkSkill = hobbieAndSkillValidator(req.body)
+  const checkSkill = hobbiesAndSkillValidator(req.body)
   const id = uuid()
 
   const newSkill = {
@@ -38,19 +52,19 @@ skillsRoute.post('/', async (req, res) => {
 })
 
 skillsRoute.put('/:id', async (req, res) => {
-  const {id} = req.params
-  const checkSkill = hobbieAndSkillValidator(req.body)
+  const { id } = req.params
+  const checkSkill = hobbiesAndSkillValidator(req.body)
 
   const skillUpdated = await updateSkill(id, checkSkill)
 
   if (!skillUpdated) {
     throw ApiError.badRequest('Cant found Skill')
   }
-  res.send({message: 'updated!'})
+  res.send({ message: 'updated!' })
 })
 
 skillsRoute.delete('/:id', async (req, res) => {
-  const {id} = req.params
+  const { id } = req.params
 
   const skillDeleted = await deleteSkill(id)
 
@@ -58,5 +72,5 @@ skillsRoute.delete('/:id', async (req, res) => {
     throw ApiError.badRequest('Cant found Skill')
   }
 
-  res.send({message: 'deleted!'})
+  res.send({ message: 'deleted!' })
 })

@@ -5,7 +5,7 @@ import {
     updateStudentHobbies,
     deleteStudentHobbies
 } from '../database/studentHobbies'
-import { relationshipHobbieValidator } from '../utils/validator'
+import { relationshipHobbiesValidator } from '../utils/validator'
 import { ApiError } from '../utils/ApiError'
 
 export const studentHobbiesRoute = Router()
@@ -21,26 +21,26 @@ studentHobbiesRoute.get('/', async (req, res) => {
 })
 
 studentHobbiesRoute.post('/', async (req, res) => {
-    const studentHobbieCheck = relationshipHobbieValidator(req.body)
+    const studentHobbiesCheck = relationshipHobbiesValidator(req.body)
 
     const newStudentHobbies = {
-        ...studentHobbieCheck
+        ...studentHobbiesCheck
     }
 
-    const studentHobbieCreated = createStudentHobbies(newStudentHobbies)
+    const studentHobbiesCreated = createStudentHobbies(newStudentHobbies)
 
-    if (!studentHobbieCreated) throw ApiError.internal()
+    if (!studentHobbiesCreated) throw ApiError.internal()
 
     res.status(201).send(newStudentHobbies)
 })
 
 studentHobbiesRoute.put('/:student_id', (req, res) => {
     const { student_id } = req.params
-    const studentHobbieCheck = relationshipHobbieValidator(req.body)
+    const studentHobbiesCheck = relationshipHobbiesValidator(req.body)
 
-    const studentHobbieUpdate = updateStudentHobbies(student_id, studentHobbieCheck)
+    const studentHobbiesUpdate = updateStudentHobbies(student_id, studentHobbiesCheck)
 
-    if (!studentHobbieUpdate) {
+    if (!studentHobbiesUpdate) {
         throw ApiError.badRequest('Cant found student')
     }
 

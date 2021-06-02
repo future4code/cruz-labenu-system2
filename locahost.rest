@@ -66,8 +66,8 @@ POST http://localhost:3000/api/teacheSkills
 Content-Type: application/json
 
   {
-    "teacher_id": "ddd03ba5-f425-41da-bb93-547329cdba6e",
-    "skill_id": "0a83100f-4dfb-4d8f-aa48-5980d046cb37",
+    "teacher_id": "ce0b8452-00b3-47e1-b0b5-3a11d00079e2",
+    "skill_id": "390be541-1d76-48db-a5d8-e4839460569a"
   }
 
 ### Create EstudantSkills
@@ -78,3 +78,10 @@ Content-Type: application/json
     "student_id": "283c5abf-ff3f-4450-849c-f715a38e4840",
     "hobbies_id": "320ddd71-3a77-4fd5-a2a6-61333b03edd8",
   },
+
+
+### Get search Hobbies
+GET http://localhost:3000/api/hobbies/film
+
+### Get all Teachers
+GET http://localhost:3000/api/skills/re
