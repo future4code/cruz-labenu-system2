@@ -6,6 +6,8 @@ import {studentRoute} from './routes/student'
 import {teacherRoute} from './routes/teacher'
 import {hobbieRoute} from './routes/hobbies'
 import {skillsRoute} from './routes/skills'
+import {teacherSkillsRoute} from './routes/teacherSkills'
+import {studentHobbiesRoute} from './routes/studentHobbies'
 import {errorHandler} from './utils/errorHandler'
 import {notFound} from './routes/notFound'
 
@@ -26,3 +28,5 @@ api.use('/student', studentRoute)
 api.use('/teacher', teacherRoute)
 api.use('/hobbies', hobbieRoute)
 api.use('/skills', skillsRoute)
+api.use('/teacheSkills', teacherSkillsRoute)
+api.use('/studentHobbies', studentHobbiesRoute)
