@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components'
 import { theme } from './styles/theme'
 
-import MenuNav  from './components/Layout/MenuNav/index';
+import MenuNav from './components/Layout/MenuNav/index';
 
 function App() {
   return (
