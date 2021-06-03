@@ -7,11 +7,9 @@ export const Container = styled.div`
   grid: 60px 1fr / 1fr 7fr;
   gap: 1rem;
   padding: 1rem;
-  /* place-items: stretch; */
   
   & > :first-child {
     grid-row: 1 / 3;
-    border: 3px solid tomato;
   }
 `
 export const Logo = styled.img`
