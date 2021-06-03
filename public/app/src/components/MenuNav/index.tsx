@@ -1,6 +1,6 @@
 import * as S from './styles'
 
-import labeLogo from '../../../assets/img/Labenu_principal.webp'
+import labeLogo from 'assets/img/Labenu_principal.webp'
 
 const MenuNav = () => {
     const menuItems = ['Home', 'Professores', 'Estudantes', 'Turmas']
