@@ -1,10 +1,14 @@
 import './App.css';
+import Home from './components/MenuNav';
+import Router from './routes/Router'
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-    <h1>Lab System!</h1>
-    </div>
+    <BrowserRouter>
+      <Home />
+      <Router />
+    </BrowserRouter>
   );
 }
 
