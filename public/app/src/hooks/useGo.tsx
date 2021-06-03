@@ -1,14 +1,15 @@
 import { useHistory } from 'react-router-dom'
 
-const useGo = () => {
+export const useGo = () => {
   const router = useHistory()
 
-  const home = () => router.push('/')
-
-
   return {
-    home
-  }
+    home: () => router.push('/'),
+    class: () => router.push('/class'),
+    students: () => router.push('/students'),
+    teachers: () => router.push('/teachers'),
+    skills: () => router.push('/skills'),
+    hobbies: () => router.push('/hobbies'),
+    modules: () => router.push('/modules')
+  } 
 }
-
-export default useGo
