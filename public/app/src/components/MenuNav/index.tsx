@@ -1,8 +1,8 @@
-import { useGo } from 'hooks/useGo'
-import { NavLink } from 'react-router-dom'
+
 import * as S from './styles'
 
 import labeLogo from 'assets/img/Labenu_principal.webp'
+
 
 export const MenuNav = () => {
     const menuItems = ['Home', 'Professores', 'Estudantes', 'Turmas']
@@ -21,3 +21,5 @@ export const MenuNav = () => {
         </nav>
     )
 }
+
+

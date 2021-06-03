@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 
 type Options = {
-  wait: boolean
+  wait?: boolean
+  limit?: number
+  offset?: number
 }
 
 type RequestResponse = [any, boolean, any, () => void]
@@ -17,7 +19,7 @@ export const useRequest = (
   
   const getData = async () => {
     try {
-      const apiData = await service(args)
+      const apiData = await service(args, options)
       setData(apiData)
     } catch(e) {
       setHasError(e)

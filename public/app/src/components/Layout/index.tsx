@@ -10,9 +10,7 @@ export const Layout: React.FC = ({ children: page }) => {
       <MenuNav />
 
       <Input label='Pesquisa' />
-
       {page}
-
     </S.Container>
   )
-}
+)
