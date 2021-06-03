@@ -30,10 +30,20 @@
       <div class="endpoint">
         <h3>Students</h3>
         <ul>
-          <li> <a href='/students'>GET /students</a></li>
-          <li> <a href='/students'>POST /students</a> <strong>create a new student</strong></li>
-          <li> <a href='/students/id'>PUT /students/id</a> <strong>update student</strong></li>
-          <li> <a href='/students/id'>DELETE /students/id</a> <strong>delete student</strong></li>
+          <li> <a href='/student'>GET /student</a> <strong>list all students</strong></li>
+          <li> <a href='/student?name=mar&age=28'>GET /student?name=mar&age=28</a> <strong>search student by name or age</strong></li>
+          <li> <a href='/student'>POST /student</a> <strong>create a new student</strong></li>
+          <li> <a href='/student/id'>GET /student/id</a> <strong>list student details</strong></li>
+          <li> <a href='/student/id'>PUT /student/id</a> <strong>update student</strong></li>
+          <li> <a href='/student/id'>DELETE /student/id</a> <strong>delete student</strong></li>
+          <li> <a href='/student/id/class'>GET /student/id/class</a> <strong>get class of student</strong></li>
+          <li> <a href='/student/id/class'>PUT /student/id/class</a> <strong>change the student class</strong></li>
+          <li> <a href='/student/id/class'>DELETE /student/id/class</a> <strong>remove student from current class</strong></li>
+          <li> <a href='/student/id/hobbies'>GET /student/students</a> <strong>list student hobbies</strong></li>
+          <li> <a href='/student/id/hobbies'>POST /student/id/hobbies</a> <strong>add new hobbie for student</strong></li>
+          <li> <a href='/student/id/hobbies'>PATCH /student/id/hobbies</a> <strong>remove a hobbie from student</strong></li>
+          <li> <a href='/student/id/hobbies'>DELETE /student/id/hobbies</a> <strong>delete all student hobbies</strong></li>
+          <li> <a href='/student/id/teachers'>GET /student/id/teachers</a> <strong>list all teachers of the student</strong></li>
         </ul>
       </div>
         
