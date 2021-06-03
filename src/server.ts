@@ -17,6 +17,10 @@ export const api = express()
 app.use(express.json())
 app.use(cors())
 app.use('/', express.static('public/app/build'))
+app.use(
+  ['/class', '/students', '/teachers', '/skills', '/hobbies', '/modules'],
+  express.static('public/app/build')
+)
 app.use('/api', api)
 app.use(notFound)
 app.use(errorHandler)

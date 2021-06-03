@@ -1,11 +1,13 @@
-import './App.css';
+import Router from "routes/Router"
+import {ThemeProvider} from 'styled-components'
+import {theme} from './styles/theme'
 
 function App() {
   return (
-    <div className="App">
-    <h1>Lab System!</h1>
-    </div>
-  );
+  <ThemeProvider theme={theme}>
+    <Router/>
+  </ThemeProvider>
+  )
 }
 
-export default App;
+export default App
