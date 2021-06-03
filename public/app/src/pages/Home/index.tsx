@@ -1,13 +1,20 @@
-import { Input } from 'components/Input'
 import * as S from './styles'
 import { useHistory } from 'react-router-dom';
+import { Card } from 'components/Card';
 
 export const Home = () => {
   const history = useHistory()
   return (
     <S.Container>
-      <S.Title>Labenu System Home Page</S.Title>
-      <Input label='Pesquisa' type='search' placeholder='Digite algo para pesquiar' />
+      <S.Title>Title</S.Title>
+      <S.CardContainer>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card columns={3} />
+      </S.CardContainer>
     </S.Container>
   )
 }

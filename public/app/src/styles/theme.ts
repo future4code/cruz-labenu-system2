@@ -1,5 +1,3 @@
-export const rem = (pixel: number) => `${pixel / 16}rem`
-
 export const theme = {
   primary: '#fe7e02',
   secondary: '#f9b24e',
@@ -11,15 +9,15 @@ export const theme = {
   cardSecondary: '#bccbd5',
   typography: {
     title: '5rem',
-    subtitle1: '4rem',
-    subtitle2: '3rem',
+    subtitle1: '3rem',
+    subtitle2: '2rem',
     body1: '1.5rem',
     body2: '1.2rem',
     button: '1.8rem',
     caption: '1rem'
   },
   space(size: number) {
-    return this.remi(size * 8)
+    return this.rem(size * 8)
   },
-  remi: (pixel: number) => `${pixel / 16}rem`
+  rem: (pixel: number) => `${pixel / 16}rem`
 }

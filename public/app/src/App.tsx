@@ -1,15 +1,14 @@
-import Router from "./routes/Router"
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components'
-import { theme } from './styles/theme'
-
-import MenuNav from './components/Layout/MenuNav/index';
+import Router from "routes/Router"
+import {ThemeProvider} from 'styled-components'
+import { GlobalStyle } from "styles/global"
+import {theme} from './styles/theme'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <MenuNav />
+        <GlobalStyle />
         <Router />
       </ThemeProvider>
     </BrowserRouter>
