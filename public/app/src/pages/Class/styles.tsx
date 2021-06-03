@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: clamp(300px, 80%, 1280px);
-  margin: auto;
+  width: 100%;
+  margin: 0 auto;
 `
 
 export const Title = styled.h1`
