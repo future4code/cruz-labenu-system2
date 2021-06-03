@@ -10,10 +10,10 @@ Content-Type: application/json
 }
 
 ### Get all student
-GET http://localhost:3000/student
+GET http://localhost:3000/api/students
 
 ### Create student
-POST http://localhost:3000/student
+POST http://localhost:3000/api/student
 Content-Type: application/json
 
 {
@@ -25,10 +25,10 @@ Content-Type: application/json
 
 
 ### All Students in student By Name
-GET http://localhost:3000/student/Cruz
+GET http://localhost:3000/api/student/Cruz
 
 ### Update student
-PUT http://localhost:3000/student/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
+PUT http://localhost:3000/api/student/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
 Content-Type: application/json
 
 {
@@ -39,4 +39,4 @@ Content-Type: application/json
 }
 
 ### Delete student
-DELETE http://localhost:3000/student/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33
+DELETE http://localhost:3000/api/student/c3ceec33-29b2-40d3-8cc9-3d3f16da9c33

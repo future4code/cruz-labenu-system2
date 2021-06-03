@@ -5,11 +5,11 @@ export async function up(knex: Knex): Promise<void> {
     table.uuid('id').index()
     table.string('name').unique().notNullable()
     table.string('patron').unique()
+    table.string('patronPicture')
     table.text('biography')
     table.date('startDate')
     table.date('endDate')
     table.integer('module')
-    table.timestamps(false, true)
   })
 }
 
