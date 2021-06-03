@@ -5,8 +5,8 @@ function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' children={Home} />
-        <Route exact path='/class' children={Class} />
+        <Route exact path='/' children={<Home/>} />
+        <Route exact path='/class' children={<Class/>} />
       </Switch>
     </BrowserRouter>
   )
