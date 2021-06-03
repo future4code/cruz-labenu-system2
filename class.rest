@@ -21,7 +21,7 @@ Content-Type: application/json
   "module": "8"
 }
 
-### All Students in Class By Name
+### List CLASS Detail
 GET http://localhost:3000/api/class/cruz
 
 ### All Students in Class By Name

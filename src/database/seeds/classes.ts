@@ -119,7 +119,9 @@ export async function seed(knex: Knex): Promise<void> {
       id: uuid(),
       name: 'Cruz',
       patron: 'Oswaldo Cruz',
-      biography: '',
+      patronPicture:
+        'https://images01.brasildefato.com.br/d3fc6896f47f52af5c9d3a760253d807.jpeg',
+      biography: `Oswaldo Gonçalves Cruz, better known as Oswaldo Cruz, was a Brazilian physician, pioneer bacteriologist, epidemiologist and public health officer and the founder of the Oswaldo Cruz Institute. He occupied the fifth chair of the Brazilian Academy of Letters from 1912 until his death in 1917.`,
       startDate: '2021-01-25',
       endDate: '2021-07-31',
       module: 6

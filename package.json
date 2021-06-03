@@ -2,7 +2,7 @@
   "name": "labsystem",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "dev": "tsnd --clear --respawn ./src/index.ts",
     "build": "tsc && node ./dist/src/index.js",
