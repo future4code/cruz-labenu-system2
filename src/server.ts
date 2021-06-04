@@ -22,8 +22,6 @@ app.use(
   express.static('public/app/build')
 )
 app.use('/api', api)
-app.use(notFound)
-app.use(errorHandler)
 
 api.use('/', express.static('public/api'))
 api.use('/ping', pingRoute)
@@ -35,3 +33,6 @@ api.use(['/hobbies', '/passatempos', '/passa-tempos'], hobbiesRoute)
 api.use(['/skills', '/habilidades', '/especialidades'], skillsRoute)
 api.use('/teacheSkills', teacherSkillsRoute)
 api.use('/studentHobbies', studentHobbiesRoute)
+
+app.use(notFound)
+app.use(errorHandler)
