@@ -18,7 +18,7 @@ export const useRequest = (
   const [isLoading, setIsLoading] = useState<boolean>(!options?.wait)
   const [hasError, setHasError] = useState<boolean>(false)
 
-  const getData = async () => {
+  const getData = async (options?: any) => {
     try {
       const apiData = await service(args, options)
       setData(apiData)
