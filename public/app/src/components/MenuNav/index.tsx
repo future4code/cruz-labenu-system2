@@ -1,4 +1,3 @@
-
 import * as S from './styles'
 
 import labeLogo from 'assets/img/Labenu_principal.webp'

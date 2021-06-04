@@ -1,9 +1,12 @@
 import { ChangeEvent, useState } from "react";
 
-export const useForm = (initialForm: [] | {}) => {
+type Objeto = Record<string, number | string>
+
+
+export const useForm = (initialForm: any) => {
   const [form, setForm] = useState(initialForm);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = ( e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };

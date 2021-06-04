@@ -1,7 +1,7 @@
 import {Class} from 'entities/Class'
 import * as S from './styles'
 import {CardBox} from 'components/CardBox'
-import reactIcon from 'assets/img/react.jpeg'
+import reactIcon from 'assets/img/react.png'
 import {Skill} from 'entities/Skill'
 import {Teacher} from 'entities/Teacher'
 
