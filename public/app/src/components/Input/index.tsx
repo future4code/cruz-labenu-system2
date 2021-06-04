@@ -1,5 +1,6 @@
 import { InputHTMLAttributes } from 'react'
 import { JsxElement } from 'typescript'
+import search from 'assets/icons/search.svg'
 import * as S from './styles'
 
 type Props = {
