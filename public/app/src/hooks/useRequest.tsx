@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
+import {useEffect, useState} from 'react'
 
 type Options = {
-  wait: boolean
+  wait?: boolean
+  limit?: number
+  offset?: number
 }
 
 type RequestResponse = [any, boolean, any, () => void]
@@ -10,16 +12,17 @@ export const useRequest = (
   initialValue: [] | {},
   service: any,
   args: any,
-  options?: Options): RequestResponse  => {
+  options?: Options
+): RequestResponse => {
   const [data, setData] = useState<[] | {}>(initialValue)
   const [isLoading, setIsLoading] = useState<boolean>(!options?.wait)
   const [hasError, setHasError] = useState<boolean>(false)
-  
-  const getData = async () => {
+
+  const getData = async (options?: any) => {
     try {
-      const apiData = await service(args)
+      const apiData = await service(args, options)
       setData(apiData)
-    } catch(e) {
+    } catch (e) {
       setHasError(e)
     } finally {
       setIsLoading(false)
@@ -31,7 +34,6 @@ export const useRequest = (
       getData()
     }
   }, [])
-  
+
   return [data, isLoading, hasError, getData]
-  
 }

@@ -14,12 +14,7 @@ export const hobbiesRoute = Router()
 
 hobbiesRoute.get('/', async (req, res) => {
   const allHobbies = await getAllHobbies()
-
-  if (!allHobbies.length) {
-    res.send('No hobbies yet')
-  } else {
-    res.send(allHobbies)
-  }
+  res.send(allHobbies)
 })
 
 hobbiesRoute.get('/:name', async (req, res) => {
@@ -27,12 +22,10 @@ hobbiesRoute.get('/:name', async (req, res) => {
 
   const studentsHobbies = await getHobbiesDetails(name)
 
-  if(!studentsHobbies){
-    res.send({message: "No students practice this hobby yet"})
+  if (!studentsHobbies) {
+    res.send({message: 'No students practice this hobby yet'})
   }
   res.send(studentsHobbies)
-
-  
 })
 
 hobbiesRoute.post('/', async (req, res) => {

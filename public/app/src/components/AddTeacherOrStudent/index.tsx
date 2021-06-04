@@ -1,20 +1,21 @@
 import { useRequest } from 'hooks/useRequest'
 import { FormEvent } from "react";
 import api from 'services/api'
+import { useParams } from 'react-router-dom';
 import { useGo } from 'hooks/useGo'
 import { initialForm } from 'constants/inputs'
 import { useForm } from "hooks/useForm";
 import * as S from './styles'
 
-export const Teachers = () => {
-    const [data, isLoading, hasError] = useRequest({}, api.addNew, 'teachers')
+export const AddTeacherOrStudent = () => {
     const [form, onChange, resetForm] = useForm(initialForm)
+    const [data, isLoading, hasError, getData] = useRequest({}, api.addNew, 'teachers', {wait:true})
     const go = useGo()
 
     const sendForm = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        data
-        resetForm
+        getData()
+        resetForm()
     }
 
     return (
@@ -35,44 +36,56 @@ export const Teachers = () => {
 
                 <input
                     required
-                    type="number"
-                    name={'age'}
-                    value={form.age} onChange={onChange}
-                    placeholder={"Idade"}
-                    title={'formato de idade inválido'}
-                    min={18}
-                    pattern={"^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$"}
+                    type="text"
+                    name='email'
+                    value={form.email}
+                    onChange={onChange}
+                    placeholder={"email"}
+                />
+
+                <input
+                    required
+                    type="date"
+                    name="birthDate"
+                    value={form.birthDate}
+                    onChange={onChange}
+                    placeholder={"Data de nascimento"}
                 />
 
                 <input
                     required
                     type="text"
-                    name={'text'}
-                    value={form.text} onChange={onChange}
-                    placeholder={"Texto de Cantidatura"}
-                    pattern={`^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$`}
-                    title={"Cuidado com os caracteres especiais"} />
+                    name='state'
+                    value={form.state}
+                    onChange={onChange}
+                    placeholder={"Estado"}
+                />
 
                 <input
                     required
                     type="text"
-                    name={'profession'}
-                    value={form.profession} onChange={onChange}
-                    placeholder={"Profissão"}
-                    title={'A profissão deve ter no mínimo 3 caracteres, sem acento'}
-                    pattern={"([a-zA-Z]*[a-zA-Z]||[ ]){3,}[a-zA-Z0-9]*$"} />
-
+                    name='description'
+                    value={form.description}
+                    onChange={onChange}
+                    placeholder={"Descrição"}
+                />
+                <input
+                    required
+                    type="text"
+                    name='classId'
+                    value={form.classId}
+                    onChange={onChange}
+                    placeholder={"Descrição"}
+                />
                 <select
-                    name={"country"}
-                    value={form.country}
+                    name="gender"
+                    value={form.gender}
                     onChange={onChange}
                     required
                 >
 
                     <option value="female">female</option>
                     <option value="male">male</option>
-                    <option value="other">other</option>
-
                 </select>
 
                 <button>Enviar</button>
@@ -81,4 +94,6 @@ export const Teachers = () => {
         </div>
     )
 }
+
+export default AddTeacherOrStudent
 

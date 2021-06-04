@@ -5,19 +5,18 @@ export const Container = styled.div`
   margin: 0 auto;
   display: grid;
   grid: 80px 1fr / 1fr;
-  padding-bottom: ${p => p.theme.space(1)};
+  padding-bottom: 100px;
 `
 
 export const Title = styled.h1`
-  color: ${ ({theme}) => theme.textPrimary};
-  font-size: ${ ({theme}) => theme.typography.subtitle1};
+  color: ${({theme}) => theme.textPrimary};
+  font-size: ${({theme}) => theme.typography.subtitle1};
   text-align: left;
   align-self: start;
 `
 
 export const CardContainer = styled.div`
   display: grid;
-  grid: 1fr 2fr / repeat(4, 1fr);
+  grid: minmax(250px, 1fr) 2fr / repeat(4, minmax(300px, 1fr));
   gap: 2rem;
 `
-

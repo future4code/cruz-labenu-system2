@@ -10,11 +10,12 @@ export const theme = {
   typography: {
     title: '5rem',
     subtitle1: '3rem',
-    subtitle2: '2rem',
-    body1: '1.5rem',
-    body2: '1.2rem',
+    subtitle2: '1.8rem',
+    subtitle3: '1.2rem',
+    body1: '1rem',
+    body2: '0.8rem',
     button: '1.8rem',
-    caption: '1rem'
+    caption: '0.6rem'
   },
   space(size: number) {
     return this.rem(size * 8)

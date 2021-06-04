@@ -1,6 +1,7 @@
 import { useRequest } from 'hooks/useRequest'
 import api from 'services/api'
 import { useGo } from 'hooks/useGo'
+import AddTeacherOrStudent from 'components/AddTeacherOrStudent/index'
 import * as S from './styles'
 
 export const Teachers = () => {
@@ -17,7 +18,7 @@ export const Teachers = () => {
                     : 'Loading...'
                 }
             </ul>
-            <button onClick={<AddTeacher>}>ADICIONAR</button>
+            <AddTeacherOrStudent />
         </S.Container>
     )
 }

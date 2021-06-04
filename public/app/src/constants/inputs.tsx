@@ -1,15 +1,3 @@
-// type InitialForm = {
-//     name: string,
-//     email: string,
-//     gender: string,
-//     birthDate: string,
-//     state: string,
-//     country: string,
-//     description: string,
-//     class_id: string
-// }
-
-
 export const initialForm = {
     name: '',
     email: '',
@@ -18,5 +6,5 @@ export const initialForm = {
     state: '',
     country: '',
     description: '',
-    class_id: ''
+    classId: ''
 }

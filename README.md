@@ -14,7 +14,8 @@ Este app gerencia todo cadastro e visualização dos alunos, turmas, professores
 # Front end
 Acessando a página inicial da aplicação, está o front end feito em REACT, esta rota vem da pasta `public/app/build` da Raiz do projeto.
 
-![Screenshot from 2021-06-02 11-49-17](https://user-images.githubusercontent.com/7757352/120502199-99571b00-c398-11eb-882c-00d08e74ce93.png)
+![Screenshot from 2021-06-03 22-09-10](https://user-images.githubusercontent.com/7757352/120730683-6a37cb00-c4b8-11eb-959b-64232da24ec6.png)
+
 
 # API catalog
 Acessando o endpint /api, é onde está todos os endpoints do servidor, na página inicial `/api`, ha um catálogo simples de toda estrutura com rotas e opções da API.

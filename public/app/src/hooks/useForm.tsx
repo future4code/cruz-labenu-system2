@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from "react";
 type Objeto = Record<string, number | string>
 
 
-export const useForm = (initialForm: Record<string, number | string>) => {
+export const useForm = (initialForm: any) => {
   const [form, setForm] = useState(initialForm);
 
   const onChange = ( e: ChangeEvent<HTMLInputElement>) => {
