@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import {useEffect, useState} from 'react'
 
 type Options = {
   wait?: boolean
@@ -12,16 +12,17 @@ export const useRequest = (
   initialValue: [] | {},
   service: any,
   args: any,
-  options?: Options): RequestResponse  => {
+  options?: Options
+): RequestResponse => {
   const [data, setData] = useState<[] | {}>(initialValue)
   const [isLoading, setIsLoading] = useState<boolean>(!options?.wait)
   const [hasError, setHasError] = useState<boolean>(false)
-  
+
   const getData = async () => {
     try {
       const apiData = await service(args, options)
       setData(apiData)
-    } catch(e) {
+    } catch (e) {
       setHasError(e)
     } finally {
       setIsLoading(false)
@@ -33,7 +34,6 @@ export const useRequest = (
       getData()
     }
   }, [])
-  
+
   return [data, isLoading, hasError, getData]
-  
 }

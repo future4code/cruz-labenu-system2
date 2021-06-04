@@ -16,13 +16,13 @@ const base = async ({method = 'get', url = '', params, data}: Props) => {
     const response = await api({method, url, params, data})
     return response.data
   } catch (e) {
-    console.log({e})
+    console.error({e})
   }
 }
 
 export default {
   api: base,
-  getAll: (url: string, params?: Record<string, any>) => base({url, ...params}),
+  getAll: (url: string, params?: Record<string, any>) => base({url, params}),
   addNew: (url: string, data: Props['data']) =>
     base({method: 'post', url, data}),
   getById: (url: string, id: string) => base({url: `${url}/${id}`}),
