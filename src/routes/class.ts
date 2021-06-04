@@ -8,7 +8,8 @@ import {
   getAllStudentsByClassNameOrId,
   getAllTeachersByClassNameOrId,
   searchClassByName,
-  searchClassByModule
+  searchClassByModule,
+  ClassSearchProps
 } from '../database/class'
 import {v4 as uuid} from 'uuid'
 import Ajv, {JSONSchemaType} from 'ajv'
@@ -28,6 +29,8 @@ classRoute.get('/', async (req, res) => {
     interface QueryProps {
       name?: string
       module?: string | number
+      limit?: string | number
+      offset?: string | number
     }
 
     const schema: JSONSchemaType<QueryProps> = {
@@ -41,6 +44,14 @@ classRoute.get('/', async (req, res) => {
           type: ['integer', 'string'],
           pattern: '^[0-7]$',
           nullable: true
+        },
+        limit: {
+          type: 'string',
+          nullable: true
+        },
+        offset: {
+          type: 'string',
+          nullable: true
         }
       },
       additionalProperties: false
@@ -50,7 +61,12 @@ classRoute.get('/', async (req, res) => {
 
     if (!validate(query)) {
       console.log(validate.errors)
-      throw ApiError.badRequest('Informa only name or module')
+      let errors =
+        validate?.errors &&
+        validate.errors.map(
+          erro => `${erro.instancePath} ${erro.keyword} ${erro.message}`
+        )
+      return res.send(errors)
     }
 
     if (query.name) {
@@ -61,11 +77,18 @@ classRoute.get('/', async (req, res) => {
       const classResults = await searchClassByModule(Number(query.module))
       return res.send(classResults)
     }
+    let pagination: Partial<ClassSearchProps>
+
+    const limit = Number(query.limit) || 0
+    const offset = Number(query.offset) || 0
+
+    const classWithPagination = await getAllClass({limit, offset})
+    return res.send(classWithPagination)
   }
 
   const allClasses = await getAllClass()
 
-  if (!allClasses.length) {
+  if (!allClasses || !allClasses.length) {
     res.send('No classes yet')
   } else {
     res.send(allClasses)

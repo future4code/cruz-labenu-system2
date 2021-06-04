@@ -13,6 +13,8 @@ export type Class = {
 export type ClassSearchProps = {
   name?: string
   module?: number
+  limit?: number
+  offset?: number
 }
 
 type Gender = 'male' | 'female'
@@ -25,7 +27,14 @@ export type StudentSearchProps = {
   ageMax: number
 }
 
-export const getAllClass = async () => classTable()
+export const getAllClass = async (props?: ClassSearchProps) => {
+  if (!props) return await classTable()
+  if (props.offset && props.limit) {
+    return await classTable().limit(props.limit).offset(props.offset)
+  }
+  if (props.limit) return await classTable().limit(props.limit)
+  return []
+}
 
 export const createClass = async (newClass: Class) =>
   classTable().insert(newClass)
