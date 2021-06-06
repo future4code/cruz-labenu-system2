@@ -3,7 +3,9 @@ import {ClassController} from '../controllers/ClassController'
 import {ClassModel} from '../models/ClassModel'
 
 export const pingRoute = Router()
-const gradeController = new ClassController(ClassModel)
+const classController = new ClassController()
 
-pingRoute.get('/', gradeController.getAll)
-pingRoute.post('/', gradeController.create)
+pingRoute.get('/', classController.getAll)
+// pingRoute.post('/', classController.create)
+// pingRoute.put('/:id', classController.update)
+// pingRoute.delete('/:id', classController.delete)

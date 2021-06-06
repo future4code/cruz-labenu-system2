@@ -1,30 +1,28 @@
 import {BaseController} from './BaseController'
 import {Class} from '../shared/entities/Class'
 import {RequestHandler} from 'express'
-import {ModelConstructor} from '../models/BaseModel'
-import {validateAllInClass} from '../utils/validators/validate-class'
-import {v4 as uuid} from 'uuid'
+import {ClassServices} from '../services/ClassServices'
+import {MainRoute, Route} from '../@types/decorators'
 
-export class ClassController extends BaseController<Class> {
-  constructor(model: ModelConstructor<Class>) {
-    super(model)
+@MainRoute('/class')
+export class ClassController extends BaseController {
+  constructor() {
+    super(ClassServices)
   }
 
-  getAll: RequestHandler = async (req, res) => {
-    const allClasses = await this.model.getAll()
-
-    res.send(allClasses)
+  @Route('get', ':id/students')
+  students: RequestHandler = async (req, res) => {
+    const {id} = req.params
+    const {query} = req
+    const students = await this.services.getStudents(id, query)
+    res.send(students)
   }
 
-  create: RequestHandler = async (req, res) => {
-    const newClass = req.body
-    validateAllInClass(newClass)
-    const id = uuid()
-    const classData = {
-      id,
-      ...newClass
-    }
-    await this.model.save(classData)
-    res.send(classData)
+  @Route('get', ':id/teachers')
+  teachers: RequestHandler = async (req, res) => {
+    const {id} = req.params
+    const {query} = req
+    const teachers = await this.services.getTeachers(id, query)
+    res.send(teachers)
   }
 }

@@ -1,11 +1,11 @@
 export class ApiError {
-  constructor(public code: number, public message: string) {}
+  constructor(public code: number, public message: any) {}
 
   static wrongParams(message: string) {
     return new ApiError(406, message)
   }
 
-  static badRequest(message: string) {
+  static badRequest(message: any) {
     return new ApiError(400, message)
   }
 

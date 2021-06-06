@@ -1,4 +1,4 @@
-import express from 'express'
+import express, {Express} from 'express'
 import cors from 'cors'
 import {pingRoute} from './routes/ping'
 import {classRoute} from './routes/class'
@@ -8,31 +8,55 @@ import {hobbiesRoute} from './routes/hobbies'
 import {skillsRoute} from './routes/skills'
 import {teacherSkillsRoute} from './routes/teacherSkills'
 import {studentHobbiesRoute} from './routes/studentHobbies'
-import {errorHandler} from './utils/errorHandler'
+import {errorHandler} from './middlewares/errorHandler'
 import {notFound} from './routes/notFound'
+import {ClassController} from './controllers/ClassController'
+import {validateId} from './utils/validators/validate-id'
+import {RouteSetup} from './@types/decorators'
+import * as Controllers from './controllers'
+import {Controller} from './controllers/BaseController'
 
-export const app = express()
-export const api = express()
+export class ExpressServer {
+  app!: Express
+  api!: Express
+  constructor(
+    public port: number = 3000,
+    public message: string = 'Welcome to ur server!'
+  ) {}
 
-app.use(express.json())
-app.use(cors())
-app.use('/', express.static('public/app/build'))
-app.use(
-  ['/class', '/students', '/teachers', '/skills', '/hobbies', '/modules'],
-  express.static('public/app/build')
-)
-app.use('/api', api)
+  async init() {
+    this.app = express()
+    this.api = express()
+    this.app.use('/api', this.api)
+    this.setupMiddlewares()
+    this.addControllers(Controllers)
+    this.setupStaticRoutes()
+  }
 
-api.use('/', express.static('public/api'))
-api.use('/ping', pingRoute)
+  addControllers(controllers: Record<string, new () => Controller>) {
+    Object.values(controllers).forEach((controller: new () => Controller) => {
+      const currentController = new controller()
+      const router = express.Router()
+      const path = Reflect.getMetadata('path', controller)
+      const routes = Reflect.getMetadata('route', controller.prototype)
+      routes.forEach(([method, route, handler]) => {
+        router[method](route, currentController[handler])
+      })
 
-api.use(['/class', '/turma'], classRoute)
-api.use(['/students', '/estudantes', '/alunos'], studentRoute)
-api.use(['/teachers', '/professores', 'instrutores'], teacherRoute)
-api.use(['/hobbies', '/passatempos', '/passa-tempos'], hobbiesRoute)
-api.use(['/skills', '/habilidades', '/especialidades'], skillsRoute)
-api.use('/teacheSkills', teacherSkillsRoute)
-api.use('/studentHobbies', studentHobbiesRoute)
+      this.api.use(path, router)
+    })
+  }
 
-app.use(notFound)
-app.use(errorHandler)
+  setupStaticRoutes() {
+    this.app.use('/', express.static('public/app/build'))
+    this.api.use('/', express.static('public/api'))
+  }
+
+  setupMiddlewares() {
+    this.app.use(express.json())
+    this.app.use(cors())
+    this.app.use('/*/:id', validateId)
+    this.app.use(notFound)
+    this.app.use(errorHandler)
+  }
+}
