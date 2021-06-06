@@ -11,21 +11,10 @@ type Validators = {
   someProps: (args: Partial<AllEntities>) => void
 }
 
-// export interface Services {
-//   model: Model
-//   validators: Validators
-//   listAll: (query: QueryOptions) => Promise<any>
-//   create: (data: Partial<AllEntities>) => Promise<any>
-//   update: (id: string, data: Omit<AllEntities, 'id'>) => Promise<any>
-//   delete: (id: string) => Promise<any>
-// }
-
 export abstract class BaseServices {
-  model: Model
+  abstract model: Model
 
-  constructor(model: ModelConstructor, public validators: Validators) {
-    this.model = new model()
-  }
+  constructor(protected validators: Validators) {}
 
   listAll = async (query: QueryOptions) => {
     if (query) {

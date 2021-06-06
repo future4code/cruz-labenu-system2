@@ -11,14 +11,14 @@ import {ApiError} from '../utils/ApiError'
 import {Model} from '../models/BaseModel'
 
 export class ClassServices extends BaseServices {
-  test: Model
+  model: ClassModel
   constructor() {
-    super(ClassModel, {
+    super({
       queries: validateClassSearchOptions,
       allProps: validateAllInClass,
       someProps: validateSomeInClass
     })
-    this.test = new ClassModel()
+    this.model = new ClassModel()
   }
 
   getStudents = async (id: string, query: QueryOptions) => {

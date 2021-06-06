@@ -1,5 +1,6 @@
 import {BaseModel} from './BaseModel'
 import {Class} from '../shared/entities/Class'
+import {QueryOptions} from '../shared/types/QueryOptions'
 
 export class ClassModel extends BaseModel {
   constructor() {
@@ -7,8 +8,17 @@ export class ClassModel extends BaseModel {
   }
 
   //methods with JOIN in other tables/models
-  getStudents = () =>
-    this.storage.select('Student.*').join('Student', 'Class.id', 'Student.id')
+  getStudents = async (queries?: QueryOptions) => {
+    let allStudents = this.storage
+      .select('Student.*')
+      .join('Student', 'Class.id', 'Student.id')
+    if (!queries) {
+      return allStudents
+    }
+    for (const query in queries) {
+      allStudents = allStudents[query](queries[query])
+    }
+  }
 
   getTeachers = () =>
     this.storage.select('Teacher.*').join('Teacher', 'Class.id', 'Teacher.id')
