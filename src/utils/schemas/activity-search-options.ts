@@ -5,7 +5,7 @@ import {activityAnyProps} from './activity-any-props'
 
 const {name, description} = activityAnyProps.properties
 
-export const classSearchOptions: JSONSchemaType<ActivitySearchOptions> = {
+export const activitySearchOptions: JSONSchemaType<ActivitySearchOptions> = {
   ...queryOptions,
   type: 'object',
   examples: [
