@@ -1,4 +1,3 @@
-import {Class} from '../shared/entities/Class'
 import {validateClassSearchOptions} from '../utils/validators/validate-class-search-options'
 import {ClassModel} from '../models/class'
 import {BaseServices} from './base'
@@ -8,21 +7,21 @@ import {
 } from '../utils/validators/validate-class'
 import {QueryOptions} from '../shared/types/QueryOptions'
 import {ApiError} from '../utils/ApiError'
-import {Model} from '../models/base'
+import {StudentModel} from '../models/student'
 
-export class ClassServices extends BaseServices {
-  model: ClassModel
+export class StudentServices extends BaseServices {
+  model: StudentModel
   constructor() {
     super({
       queries: validateClassSearchOptions,
       allProps: validateAllInClass,
       someProps: validateSomeInClass
     })
-    this.model = new ClassModel()
+    this.model = new StudentModel()
   }
 
-  getStudents = async (id: string, query: QueryOptions) => {
-    const studentsInClass = await this.model.getStudents(query)
+  getHobbies = async (id: string, query: QueryOptions) => {
+    const studentsInClass = await this.model.getHobbies(query)
 
     if (!studentsInClass) {
       throw ApiError.badRequest({message: 'NO students here'})
@@ -30,14 +29,21 @@ export class ClassServices extends BaseServices {
     return studentsInClass
   }
 
-  getTeachers = async (id: string, query: QueryOptions) => {
-    const teachersInClass = await this.model.getTeachers(query)
+  addHobbie = async (id: string, query: QueryOptions) => {
+    const studentsInClass = await this.model.addHobbie(query)
 
-    if (!teachersInClass) {
+    if (!studentsInClass) {
       throw ApiError.badRequest({message: 'NO students here'})
     }
-    const a = new ClassModel()
-    a.getStudents()
-    return teachersInClass
+    return studentsInClass
+  }
+
+  deleteHobbie = async (id: string, query: QueryOptions) => {
+    const studentsInClass = await this.model.deleteHobbie(query)
+
+    if (!studentsInClass) {
+      throw ApiError.badRequest({message: 'NO students here'})
+    }
+    return studentsInClass
   }
 }

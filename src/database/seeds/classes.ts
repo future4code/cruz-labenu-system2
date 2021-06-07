@@ -1,6 +1,8 @@
 import {Knex} from 'knex'
 import {v4 as uuid} from 'uuid'
 
+export const cruzId = 'ee244fe7-ad1b-416d-aaf5-927ff2387233'
+
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
   await knex('Class').del()
@@ -116,7 +118,7 @@ export async function seed(knex: Knex): Promise<void> {
       module: 7
     },
     {
-      id: uuid(),
+      id: cruzId,
       name: 'Cruz',
       patron: 'Oswaldo Cruz',
       patronPicture:

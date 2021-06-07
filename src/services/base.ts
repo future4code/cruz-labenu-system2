@@ -49,6 +49,15 @@ export abstract class BaseServices implements Services {
     return await this.model.save(data as AllEntities)
   }
 
+  detail = async (id: string) => {
+    // this.validators.validateSomeInClass(data)
+    const isClassUpdated = true
+    if (isClassUpdated) {
+      return {message: 'updated success!'}
+    }
+    throw ApiError.badRequest({message: 'This user ID dont exist'})
+  }
+
   update = async (id: string, data: Omit<AllEntities, 'id'>) => {
     this.validators.validateSomeInClass(data)
     const isClassUpdated = await this.model.update(id as string, data)

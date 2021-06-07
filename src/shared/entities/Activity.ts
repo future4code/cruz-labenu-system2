@@ -1,4 +1,4 @@
-export interface Hobbie {
+export interface Activity {
   id: string
   name: string
   picture: string

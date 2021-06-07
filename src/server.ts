@@ -32,10 +32,10 @@ export class ExpressServer {
     this.app = express()
     this.api = express()
     this.app.use('/api', this.api)
-    this.setupStaticRoutes()
     this.setupMiddlewares()
+    this.setupStaticRoutes()
     this.addControllers(Controllers)
-    this.setupFinalHanderls()
+    // this.setupFinalHanderls()
   }
 
   addControllers(controllers: Record<string, new () => Controller>) {
@@ -68,6 +68,12 @@ export class ExpressServer {
   setupMiddlewares() {
     this.app.use(express.json())
     this.app.use(cors())
+    this.api.use(express.json())
+    this.api.use(cors())
+    this.app.post('/', (req, res) => {
+      console.log('body: ', req.body)
+      res.send(req.body)
+    })
     this.app.use(morgan('dev'))
     this.app.use('/\\w+/:id', validateId)
     this.app.use(notFound)

@@ -18,7 +18,7 @@ export class StudentModel extends BaseModel {
     return await filtered
   }
 
-  addHobbies = async (queries?: QueryOptions) => {
+  addHobbie = async (queries?: QueryOptions) => {
     let allStudents = this.storage
       .select('Hobbie.*')
       .join('Student', 'Hobbie.id', 'Student.id')

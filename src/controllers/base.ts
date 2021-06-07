@@ -5,24 +5,33 @@ import {Services} from '../services/base'
 
 export interface Controller {
   services: Services
-  getAll: RequestHandler
+  handle: RequestHandler
 }
 
 export abstract class BaseController implements Controller {
   abstract services: Services
-  constructor() {}
 
   @Route('get', '/')
-  getAll: RequestHandler = async (req, res) => {
+  handle: RequestHandler = async (req, res) => {
+    console.log('body: ', req.body)
     const resultList = await this.services.listAll(req.query)
     res.send(resultList)
   }
 
   @Route('post', '/')
   create: RequestHandler = async (req, res) => {
+    console.log('body: ', req.body)
     const data = req.body
     const dataCreated = this.services.create(data)
     res.send(dataCreated)
+  }
+
+  @Route('get', '/:id')
+  detail: RequestHandler = async (req, res) => {
+    const {id} = req.params
+    const {data} = req.body
+    const dataUpdated = this.services.update(id, data)
+    res.send(dataUpdated)
   }
 
   @Route('put', '/:id')

@@ -1,29 +1,37 @@
 import {BaseController} from './base'
 import {RequestHandler} from 'express'
-import {ClassServices} from '../services/class'
 import {MainRoute, Route} from '../@types/decorators'
+import {StudentServices} from '../services/student'
 
-@MainRoute('/class')
-export class ClassController extends BaseController {
-  services: ClassServices
+@MainRoute('/student')
+export class StudentController extends BaseController {
+  services: StudentServices
   constructor() {
     super()
-    this.services = new ClassServices()
+    this.services = new StudentServices()
   }
 
-  @Route('get', '/:id/students')
-  students: RequestHandler = async (req, res) => {
+  @Route('get', '/:id/hobbies')
+  listHobbies: RequestHandler = async (req, res) => {
     const {id} = req.params
     const {query} = req
-    const students = await this.services.getStudents(id, query)
+    const students = await this.services.getHobbies(id, query)
     res.send(students)
   }
 
-  @Route('get', '/:id/teachers')
-  teachers: RequestHandler = async (req, res) => {
+  @Route('post', '/:id/hobbies')
+  addHobbie: RequestHandler = async (req, res) => {
     const {id} = req.params
     const {query} = req
-    const teachers = await this.services.getTeachers(id, query)
-    res.send(teachers)
+    const students = await this.services.getHobbies(id, query)
+    res.send(students)
+  }
+
+  @Route('delete', '/:id/hobbies')
+  deleteHobbie: RequestHandler = async (req, res) => {
+    const {id} = req.params
+    const {query} = req
+    const students = await this.services.getHobbies(id, query)
+    res.send(students)
   }
 }

@@ -1,9 +1,6 @@
-import {Class} from './Class'
-import {Hobbie} from './Hobbie'
-import {Skill} from './Skill'
-import {Teacher} from './Teacher'
+import {Class, User, Activity} from '.'
 
-export type AllEntities = Class | Teacher | Hobbie | Skill | BaseEntitie
+export type AllEntities = Class | User | Activity | BaseEntitie
 
 export interface BaseEntitie {
   id: string
