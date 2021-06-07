@@ -6,6 +6,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string('name').notNullable()
     table.string('nickname')
     table.string('email').notNullable().unique()
+    table.string('password').notNullable()
     table.enu('gender', ['male', 'female']).notNullable()
     table.date('birthDate').notNullable()
     table.string('picture')

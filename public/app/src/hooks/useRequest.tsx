@@ -33,7 +33,7 @@ export const useRequest = (
 
   useEffect(() => {
     if (!options?.wait) {
-      getData()
+      getData(options)
     }
   }, [])
 

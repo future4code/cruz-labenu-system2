@@ -12,6 +12,7 @@ type Props = {
 }
 
 const base = async ({method = 'get', url = '', params, data}: Props) => {
+  console.log('request: ', url, params)
   try {
     const response = await api({method, url, params, data})
     return response.data

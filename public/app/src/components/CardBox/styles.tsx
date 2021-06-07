@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 type Props = {
-  rows?: number
-  columns?: number
+  rows?: number | undefined
+  columns?: number | undefined
 }
 
 export const Container = styled.div<Props>`

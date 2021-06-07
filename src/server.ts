@@ -1,12 +1,11 @@
-import express, {Express, RequestHandler, RouterOptions} from 'express'
+import express, {Express} from 'express'
 import cors from 'cors'
-import {errorHandler} from './middlewares/errorHandler'
+import morgan from 'morgan'
+import {errorHandler, validateIdInRoutes} from './middlewares'
 import {notFound} from './routes/notFound'
-import {validateId} from './utils/validators/validate-id'
-import {RouteSetup} from './@types/decorators'
 import * as Controllers from './controllers'
 import {Controller} from './controllers/base'
-import morgan from 'morgan'
+import open from 'open'
 
 type HttpMethods = 'get' | 'post' | 'put' | 'delete' | 'patch'
 type RouteData = [method: HttpMethods, route: string, handler: string]
@@ -20,13 +19,14 @@ export class ExpressServer {
   ) {}
 
   async init() {
+    console.log('Starting the app...'.red)
     this.app = express()
     this.api = express()
     this.app.use('/api', this.api)
     this.setupMiddlewares()
     this.setupStaticRoutes()
     this.addControllers(Controllers)
-    // this.setupFinalHanderls()
+    this.setupFinalHanderls()
   }
 
   addControllers(controllers: Record<string, new () => Controller>) {
@@ -57,8 +57,7 @@ export class ExpressServer {
     this.api.use(express.json())
     this.api.use(cors())
     this.app.use(morgan('dev'))
-    this.app.use('/\\w+/:id', validateId)
-    this.app.use(notFound)
+    this.api.use('/\\w+/:id', validateIdInRoutes)
     this.app.use(errorHandler)
   }
 
@@ -67,11 +66,14 @@ export class ExpressServer {
     this.app.use('/', express.static('public/app/build'))
   }
 
-  setupFinalHanderls() {}
+  setupFinalHanderls() {
+    this.app.use(notFound)
+  }
 
-  listen() {
+  async listen() {
     this.app.listen(this.port, () =>
       console.log(`${this.message}, running at port ${this.port}`.green)
     )
+    await open(`http://localhost:${this.port}`)
   }
 }

@@ -20,7 +20,7 @@ export const classAnyProps: JSONSchemaType<Partial<Class>> = {
       minLength: 10,
       nullable: true
     },
-    biography: {type: 'string', minLength: 50, maxLength: 255, nullable: true},
+    biography: {type: 'string', minLength: 50, maxLength: 500, nullable: true},
     startDate: {
       type: 'string',
       format: 'date',

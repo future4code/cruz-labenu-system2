@@ -1,45 +1,48 @@
-import {validateClassSearchOptions} from '../utils/validators/validate-class-search-options'
-import {ClassModel} from '../models/class'
 import {BaseServices} from './base'
-import {
-  validateAllInClass,
-  validateSomeInClass
-} from '../utils/validators/validate-class'
+import {validateAllInUser, validateSomeInUser} from '../utils/validators'
 import {QueryOptions} from '../shared/types/QueryOptions'
 import {ApiError} from '../utils/ApiError'
 import {StudentModel} from '../models/student'
+import {validateUserSearchOptions} from '../utils/validators'
+import {v4 as uuid} from 'uuid'
 
 export class StudentServices extends BaseServices {
   model: StudentModel
   constructor() {
     super({
-      queries: validateClassSearchOptions,
-      allProps: validateAllInClass,
-      someProps: validateSomeInClass
+      queries: validateUserSearchOptions,
+      allProps: validateAllInUser,
+      someProps: validateSomeInUser
     })
     this.model = new StudentModel()
   }
 
   getHobbies = async (id: string, query: QueryOptions) => {
-    const studentsInClass = await this.model.getHobbies(query)
+    const studentsHobbies = await this.model.getHobbies(id)
 
-    if (!studentsInClass) {
-      throw ApiError.badRequest({message: 'NO students here'})
+    if (!studentsHobbies) {
+      throw ApiError.badRequest({message: 'No hobbies yet'})
     }
-    return studentsInClass
+    return studentsHobbies
   }
 
-  addHobbie = async (id: string, query: QueryOptions) => {
-    const studentsInClass = await this.model.addHobbie(query)
+  addHobbie = async (student_id: string, hobbie_id: string) => {
+    const id = uuid()
 
-    if (!studentsInClass) {
-      throw ApiError.badRequest({message: 'NO students here'})
+    const newStudentHobbie = {
+      id,
+      student_id,
+      hobbie_id
     }
-    return studentsInClass
+
+    return this.model.addHobbie(newStudentHobbie)
   }
 
-  deleteHobbie = async (id: string, query: QueryOptions) => {
-    const studentsInClass = await this.model.deleteHobbie(query)
+  deleteHobbie = async (student_id: string, hobbie_id: string) => {
+    const studentsInClass = await this.model.deleteHobbie({
+      student_id,
+      hobbie_id
+    })
 
     if (!studentsInClass) {
       throw ApiError.badRequest({message: 'NO students here'})

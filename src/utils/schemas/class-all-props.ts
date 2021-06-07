@@ -20,7 +20,7 @@ export const classAllProps: JSONSchemaType<Omit<Class, 'id'>> = {
     name: {type: 'string', minLength: 3, maxLength: 10},
     patron: {type: 'string', minLength: 6, maxLength: 16},
     patronPicture: {type: 'string', format: 'url', minLength: 10},
-    biography: {type: 'string', minLength: 50, maxLength: 255},
+    biography: {type: 'string', minLength: 50, maxLength: 500},
     startDate: {
       type: 'string',
       format: 'date',

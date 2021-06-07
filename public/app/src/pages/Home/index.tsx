@@ -15,19 +15,20 @@ export const Home = () => {
   const [hobbies, isLoadingHobbies, hasErrorHobbies] = useRequest(
     [],
     api.getAll,
-    'hobbies',
+    'hobby',
     {limit: 8}
   )
-  const [skills, isLoadingSkills, hasErrorSkills] = useRequest(
-    [],
-    api.getAll,
-    'skills',
-    {limit: 6}
-  )
+  const skills = hobbies
+  // const [skills, isLoadingSkills, hasErrorSkills] = useRequest(
+  //   [],
+  //   api.getAll,
+  //   'skill',
+  //   {limit: 6}
+  // )
   const [teachers, isLoadingTeachers, hasErrorTeachers] = useRequest(
     [],
     api.getAll,
-    'teachers',
+    'teacher',
     {limit: 4}
   )
 

@@ -13,16 +13,14 @@ export abstract class BaseController implements Controller {
 
   @Route('get', '/')
   handle: RequestHandler = async (req, res) => {
-    console.log('body: ', req.body)
     const resultList = await this.services.listAll(req.query)
     res.send(resultList)
   }
 
   @Route('post', '/')
   create: RequestHandler = async (req, res) => {
-    console.log('body: ', req.body)
     const data = req.body
-    const dataCreated = this.services.create(data)
+    const dataCreated = await this.services.create(data)
     res.send(dataCreated)
   }
 
@@ -36,8 +34,8 @@ export abstract class BaseController implements Controller {
   @Route('put', '/:id')
   update: RequestHandler = async (req, res) => {
     const {id} = req.params
-    const {data} = req.body
-    const dataUpdated = this.services.update(id, data)
+    const data = req.body
+    const dataUpdated = await this.services.update(id, data)
     res.send(dataUpdated)
   }
 

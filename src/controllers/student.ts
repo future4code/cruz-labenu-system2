@@ -11,7 +11,7 @@ export class StudentController extends BaseController {
     this.services = new StudentServices()
   }
 
-  @Route('get', '/:id/hobbies')
+  @Route('get', '/:id/hobby')
   listHobbies: RequestHandler = async (req, res) => {
     const {id} = req.params
     const {query} = req
@@ -19,7 +19,7 @@ export class StudentController extends BaseController {
     res.send(students)
   }
 
-  @Route('post', '/:id/hobbies')
+  @Route('post', '/:id/hobby')
   addHobbie: RequestHandler = async (req, res) => {
     const {id} = req.params
     const {query} = req
@@ -27,7 +27,7 @@ export class StudentController extends BaseController {
     res.send(students)
   }
 
-  @Route('delete', '/:id/hobbies')
+  @Route('delete', '/:id/hobby/:hobbie')
   deleteHobbie: RequestHandler = async (req, res) => {
     const {id} = req.params
     const {query} = req

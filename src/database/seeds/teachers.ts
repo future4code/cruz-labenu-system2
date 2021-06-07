@@ -11,12 +11,14 @@ export async function seed(knex: Knex): Promise<void> {
       id: uuid(),
       name: 'Marcelino Sandroni',
       email: 'marcelino.sandroni@gmail.com',
+      password: '123123123',
       birthDate: '1991-11-28'
     },
     {
       id: uuid(),
       name: 'Isabelle Frederico',
       email: 'isabelle.frederico@gmail.com',
+      password: '123123123',
       birthDate: '1991-11-28'
     }
   ])

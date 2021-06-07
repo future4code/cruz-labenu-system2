@@ -8,7 +8,7 @@ import {Services} from '../services/base'
 
 @MainRoute('/user')
 export class UserController implements Controller {
-  secretpw!: string
+  secret!: string
   services!: Services
   @Route('post', '/signup')
   handle: RequestHandler = async (req, res) => {
@@ -17,7 +17,7 @@ export class UserController implements Controller {
     // const id = uuid()
     const id = '123456'
     const hashPassword = await bcrypt.hash(password, 10)
-    this.secretpw = hashPassword
+    this.secret = hashPassword
     const token = jwt.sign({id, name, hashPassword}, 'bananinha', {
       expiresIn: '1h'
     })
@@ -25,14 +25,17 @@ export class UserController implements Controller {
   }
 
   @Route('post', '/login')
-  login: RequestHandler = (req, res) => {
+  login: RequestHandler = async (req, res) => {
     const {name, password} = req.body
     if (req.headers.auth) {
-      const token = req.headers.auth
+      const token = req.headers.auth as string
       try {
-        const tokenData = jwt.verify(token as string, 'bananinha')
-        const passwordIsValid = bcrypt.compare(password, this.secretpw)
-        res.send({passwordIsValid, password, hash: this.secretpw})
+        const passwordIsValid = await bcrypt.compare(password, this.secret)
+
+        if (passwordIsValid) {
+          const tokenData = jwt.verify(token, 'bananinha')
+          res.send({message: 'logged successfull'})
+        }
       } catch (e) {
         res.send({error: 'token expired'})
       }

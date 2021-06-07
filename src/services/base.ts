@@ -18,7 +18,7 @@ export type MessageResponse = {
 
 export interface Services {
   listAll: (query: QueryOptions) => Promise<void>
-  create: (newData: Partial<AllEntities>) => Promise<void | number[]>
+  create: (newData: Partial<AllEntities>) => Promise<any>
   detail: (id: string) => Promise<any>
   update: (
     id: string,
@@ -52,21 +52,24 @@ export abstract class BaseServices implements Services {
       ...newData
     }
 
-    return await this.model.save(data as AllEntities)
+    const dataCreated = await this.model.save(data as AllEntities)
+    if (dataCreated) {
+      return data
+    }
+    throw ApiError.internal()
   }
 
   detail = async (id: string) => {
     this.validators.id(id)
     const searchResult = await this.model.findOne({id})
     if (searchResult! && Object.keys(searchResult!).length) {
-      console.log(searchResult)
       return searchResult
     }
     throw ApiError.badRequest({message: 'This user ID dont exist'})
   }
 
   update = async (id: string, data: Omit<AllEntities, 'id'>) => {
-    this.validators.validateSomeInClass(data)
+    this.validators.someProps(data)
     const isClassUpdated = await this.model.update(id as string, data)
     if (isClassUpdated) {
       return {message: 'updated success!'}

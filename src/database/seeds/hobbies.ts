@@ -9,19 +9,19 @@ export async function seed(knex: Knex): Promise<void> {
   await knex('Hobbies').insert([
     {
       id: uuid(),
-      name: 'Filmes',
+      name: 'Filmes'
     },
     {
       id: uuid(),
-      name: 'Andar de bike',
+      name: 'Andar de bike'
     },
     {
       id: uuid(),
-      name: 'Tocar violão',
+      name: 'Tocar violão'
     },
     {
       id: uuid(),
-      name: 'Dançar',
+      name: 'Dançar'
     }
   ])
 }
