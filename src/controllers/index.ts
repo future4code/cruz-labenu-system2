@@ -1,1 +1,1 @@
-export * from './ClassController'
+export * from './class'

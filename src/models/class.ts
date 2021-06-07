@@ -1,25 +1,32 @@
 import {BaseModel} from './base'
 import {Class} from '../shared/entities/Class'
 import {QueryOptions} from '../shared/types/QueryOptions'
+import {Route} from '../@types/decorators'
 
 export class ClassModel extends BaseModel {
   constructor() {
     super('Class')
   }
 
-  //methods with JOIN in other tables/models
   getStudents = async (queries?: QueryOptions) => {
     let allStudents = this.storage
       .select('Student.*')
       .join('Student', 'Class.id', 'Student.id')
     if (!queries) {
-      return allStudents
+      return await allStudents
     }
-    for (const query in queries) {
-      allStudents = allStudents[query](queries[query])
-    }
+    const filtered = this.pagination(queries, allStudents)
+    return await filtered
   }
 
-  getTeachers = () =>
-    this.storage.select('Teacher.*').join('Teacher', 'Class.id', 'Teacher.id')
+  getTeachers = async (queries: QueryOptions) => {
+    let allTeachers = this.storage
+      .select('Teacher.*')
+      .join('Teacher', 'Class.id', 'Teacher.id')
+    if (!queries) {
+      return await allTeachers
+    }
+    const filtered = this.pagination(queries, allTeachers)
+    return await filtered
+  }
 }

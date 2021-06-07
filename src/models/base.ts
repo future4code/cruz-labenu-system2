@@ -26,10 +26,7 @@ export abstract class BaseModel implements Model {
     return this._storage()
   }
 
-  // getAll = async () => this.storage
-  async getAll() {
-    return this.storage
-  }
+  getAll = async () => this.storage
 
   save = async (entity: AllEntities) => this.storage.insert(entity)
 

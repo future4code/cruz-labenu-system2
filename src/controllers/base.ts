@@ -1,27 +1,31 @@
 import {RequestHandler} from 'express'
-import {Services} from '../services/BaseServices'
 import {AllEntities, BaseEntitie} from '../shared/entities/AllEntities'
 import {Route, MainRoute} from '../@types/decorators'
+import {Services} from '../services/base'
 
 export interface Controller {
   services: Services
   getAll: RequestHandler
 }
 
-@MainRoute('sdfsdf')
-export class BaseController implements Controller {
-  services: Services
-  constructor(services: new () => Services) {
-    this.services = new services()
-  }
+export abstract class BaseController implements Controller {
+  abstract services: Services
+  constructor() {}
 
-  @Route('get', 'list')
+  @Route('get', '/')
   getAll: RequestHandler = async (req, res) => {
-    const resultList = this.services.listAll(req.query)
+    const resultList = await this.services.listAll(req.query)
     res.send(resultList)
   }
 
-  @Route('get', 'list')
+  @Route('post', '/')
+  create: RequestHandler = async (req, res) => {
+    const data = req.body
+    const dataCreated = this.services.create(data)
+    res.send(dataCreated)
+  }
+
+  @Route('put', '/:id')
   update: RequestHandler = async (req, res) => {
     const {id} = req.params
     const {data} = req.body
@@ -29,15 +33,10 @@ export class BaseController implements Controller {
     res.send(dataUpdated)
   }
 
+  @Route('delete', '/:id')
   delete: RequestHandler = async (req, res) => {
     const {id} = req.params
     const dataDeleted = await this.services.delete(id)
     res.send(dataDeleted)
-  }
-
-  create: RequestHandler = async (req, res) => {
-    const data = req.body
-    const dataCreated = this.services.create(data)
-    res.send(dataCreated)
   }
 }

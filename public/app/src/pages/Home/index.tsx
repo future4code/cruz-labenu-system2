@@ -11,6 +11,7 @@ export const Home = () => {
   const [grades, isLoading, hasError] = useRequest([], api.getAll, 'class', {
     limit: 4
   })
+  console.log({grades})
   const [hobbies, isLoadingHobbies, hasErrorHobbies] = useRequest(
     [],
     api.getAll,

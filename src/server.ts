@@ -1,4 +1,4 @@
-import express, {Express} from 'express'
+import express, {Express, RequestHandler, RouterOptions} from 'express'
 import cors from 'cors'
 import {pingRoute} from './routes/ping'
 import {classRoute} from './routes/class'
@@ -10,11 +10,15 @@ import {teacherSkillsRoute} from './routes/teacherSkills'
 import {studentHobbiesRoute} from './routes/studentHobbies'
 import {errorHandler} from './middlewares/errorHandler'
 import {notFound} from './routes/notFound'
-import {ClassController} from './controllers/ClassController'
+import {ClassController} from './controllers/class'
 import {validateId} from './utils/validators/validate-id'
 import {RouteSetup} from './@types/decorators'
 import * as Controllers from './controllers'
-import {Controller} from './controllers/BaseController'
+import {Controller} from './controllers/base'
+import morgan from 'morgan'
+
+type HttpMethods = 'get' | 'post' | 'put' | 'delete' | 'patch'
+type RouteData = [method: HttpMethods, route: string, handler: string]
 
 export class ExpressServer {
   app!: Express
@@ -28,35 +32,58 @@ export class ExpressServer {
     this.app = express()
     this.api = express()
     this.app.use('/api', this.api)
+    this.setupStaticRoutes()
     this.setupMiddlewares()
     this.addControllers(Controllers)
-    this.setupStaticRoutes()
+    this.setupFinalHanderls()
   }
 
   addControllers(controllers: Record<string, new () => Controller>) {
+    console.log('Setting controllers and routes...')
     Object.values(controllers).forEach((controller: new () => Controller) => {
       const currentController = new controller()
       const router = express.Router()
       const path = Reflect.getMetadata('path', controller)
-      const routes = Reflect.getMetadata('route', controller.prototype)
+      const routes: RouteData[] = Reflect.getMetadata(
+        'route',
+        controller.prototype
+      )
+      console.log(`Route ${path}, using controller ${controller.name}`)
       routes.forEach(([method, route, handler]) => {
-        router[method](route, currentController[handler])
+        console.log(
+          `${method} ${path.slice(1)}${route} handler: ${
+            controller.name
+          }.${handler}`
+        )
+        return router[method](
+          route,
+          currentController[handler as keyof Omit<Controller, 'services'>]
+        )
       })
 
       this.api.use(path, router)
     })
   }
 
-  setupStaticRoutes() {
-    this.app.use('/', express.static('public/app/build'))
-    this.api.use('/', express.static('public/api'))
-  }
-
   setupMiddlewares() {
     this.app.use(express.json())
     this.app.use(cors())
-    this.app.use('/*/:id', validateId)
+    this.app.use(morgan('dev'))
+    this.app.use('/\\w+/:id', validateId)
     this.app.use(notFound)
     this.app.use(errorHandler)
+  }
+
+  setupStaticRoutes() {
+    this.api.use('/', express.static('public/api'))
+    this.app.use('/', express.static('public/app/build'))
+  }
+
+  setupFinalHanderls() {}
+
+  listen() {
+    this.app.listen(this.port, () =>
+      console.log(`${this.message}, running at port ${this.port}`)
+    )
   }
 }

@@ -4,9 +4,11 @@ type Options = {
   wait?: boolean
   limit?: number
   offset?: number
+  orderBy?: string
+  order?: string
 }
 
-type RequestResponse = [any, boolean, any, () => void]
+type RequestResponse = [any, boolean, any, (options?: Options) => void]
 
 export const useRequest = (
   initialValue: [] | {},
@@ -16,7 +18,7 @@ export const useRequest = (
 ): RequestResponse => {
   const [data, setData] = useState<[] | {}>(initialValue)
   const [isLoading, setIsLoading] = useState<boolean>(!options?.wait)
-  const [hasError, setHasError] = useState<boolean>(false)
+  const [hasError, setHasError] = useState<any>(false)
 
   const getData = async (options?: any) => {
     try {

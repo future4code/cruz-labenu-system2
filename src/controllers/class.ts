@@ -1,16 +1,17 @@
-import {BaseController} from './BaseController'
-import {Class} from '../shared/entities/Class'
+import {BaseController} from './base'
 import {RequestHandler} from 'express'
-import {ClassServices} from '../services/ClassServices'
+import {ClassServices} from '../services/class'
 import {MainRoute, Route} from '../@types/decorators'
 
 @MainRoute('/class')
 export class ClassController extends BaseController {
+  services: ClassServices
   constructor() {
-    super(ClassServices)
+    super()
+    this.services = new ClassServices()
   }
 
-  @Route('get', ':id/students')
+  @Route('get', '/:id/students')
   students: RequestHandler = async (req, res) => {
     const {id} = req.params
     const {query} = req
@@ -18,7 +19,7 @@ export class ClassController extends BaseController {
     res.send(students)
   }
 
-  @Route('get', ':id/teachers')
+  @Route('get', '/:id/teachers')
   teachers: RequestHandler = async (req, res) => {
     const {id} = req.params
     const {query} = req

@@ -11,7 +11,21 @@ type Validators = {
   someProps: (args: Partial<AllEntities>) => void
 }
 
-export abstract class BaseServices {
+export type MessageResponse = {
+  message: string
+}
+
+export interface Services {
+  listAll: (query: QueryOptions) => Promise<void>
+  create: (newData: Partial<AllEntities>) => Promise<void | number[]>
+  update: (
+    id: string,
+    data: Omit<AllEntities, 'id'>
+  ) => Promise<MessageResponse>
+  delete: (id: string) => Promise<MessageResponse>
+}
+
+export abstract class BaseServices implements Services {
   abstract model: Model
 
   constructor(protected validators: Validators) {}
@@ -19,16 +33,16 @@ export abstract class BaseServices {
   listAll = async (query: QueryOptions) => {
     if (query) {
       this.validators.queries(query)
-      return await this.model.getFiltered(query)
+      return this.model.getFiltered(query)
     }
-    return await this.model.getAll()
+    return this.model.getAll()
   }
 
   create = async (newData: Partial<AllEntities>) => {
     this.validators.allProps(newData)
     const id = uuid()
     const data = {
-      id: 'sdfsdfsdf',
+      id,
       ...newData
     }
 

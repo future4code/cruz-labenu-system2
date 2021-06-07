@@ -1,7 +1,7 @@
 import {Class} from '../shared/entities/Class'
 import {validateClassSearchOptions} from '../utils/validators/validate-class-search-options'
 import {ClassModel} from '../models/class'
-import {BaseServices} from './BaseServices'
+import {BaseServices} from './base'
 import {
   validateAllInClass,
   validateSomeInClass
@@ -25,7 +25,7 @@ export class ClassServices extends BaseServices {
     const studentsInClass = await this.model.getStudents(query)
 
     if (!studentsInClass) {
-      throw ApiError.badRequest({message: 'NO students here'})
+      throw ApiError.badRequest({message: 'No students here'})
     }
     return studentsInClass
   }
@@ -34,7 +34,7 @@ export class ClassServices extends BaseServices {
     const teachersInClass = await this.model.getTeachers(query)
 
     if (!teachersInClass) {
-      throw ApiError.badRequest({message: 'NO students here'})
+      throw ApiError.badRequest({message: 'No students here'})
     }
     const a = new ClassModel()
     a.getStudents()
