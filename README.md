@@ -18,6 +18,9 @@ Acessando a página inicial da aplicação, está o front end feito em REACT, es
 
 
 # API catalog
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/14852823-ed39eab9-1a94-4ec5-a081-88a4ac1f64aa?action=collection%2Ffork&collection-url=entityId%3D14852823-ed39eab9-1a94-4ec5-a081-88a4ac1f64aa%26entityType%3Dcollection%26workspaceId%3D1abd2c64-b3c1-4171-933f-f7f24af287a0)
+
 Acessando o endpint /api, é onde está todos os endpoints do servidor, na página inicial `/api`, ha um catálogo simples de toda estrutura com rotas e opções da API.
 
 ![Screenshot from 2021-06-02 17-27-23](https://user-images.githubusercontent.com/7757352/120547743-e999a180-c3c7-11eb-8137-782ee0678a3d.png)
