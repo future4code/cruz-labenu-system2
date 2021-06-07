@@ -1,6 +1,6 @@
 import axios, {Method} from 'axios'
 
-const baseURL = 'http://localhost:3000/api'
+const baseURL = 'http://localhost:3100/api'
 
 const api = axios.create({baseURL})
 
@@ -12,6 +12,7 @@ type Props = {
 }
 
 const base = async ({method = 'get', url = '', params, data}: Props) => {
+  console.log('request: ', url, params)
   try {
     const response = await api({method, url, params, data})
     return response.data

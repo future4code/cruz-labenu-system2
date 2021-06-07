@@ -1,3 +1,7 @@
-import {app} from './server'
+import {ExpressServer} from './server'
+import colors from 'colors'
+colors.enable()
 
-app.listen(3000, () => console.log('server on!'))
+const server = new ExpressServer(3100, 'Welcome to ur server!')
+server.init()
+server.listen()

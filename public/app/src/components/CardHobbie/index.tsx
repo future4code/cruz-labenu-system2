@@ -12,9 +12,11 @@ type Props = {
 }
 
 export const CardHobbie = ({hobbies, title, rows, columns}: Props) => {
+  console.log({hobbies})
   return (
     <CardBox {...{title}}>
-      {hobbies.length &&
+      {hobbies &&
+        hobbies?.length &&
         hobbies.map(hobbie => (
           <S.Container>
             <S.Image src={hobbieIcon} />

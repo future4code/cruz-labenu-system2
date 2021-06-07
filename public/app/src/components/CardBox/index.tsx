@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import {ReactNode} from 'react'
 import * as S from './styles'
 
 type Props = {
@@ -14,6 +14,5 @@ export const CardBox = ({title, rows, columns, children}: Props) => {
       {title && <S.Title>{title}</S.Title>}
       {children}
     </S.Container>
-
   )
 }

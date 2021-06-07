@@ -24,7 +24,7 @@ classRoute.get('/', async (req, res) => {
   const query = {...req.query}
 
   if (hasQueries) {
-    const ajv = new Ajv({allErrors: true})
+    const ajv = new Ajv({allErrors: true, allowUnionTypes: true})
 
     interface QueryProps {
       name?: string
