@@ -1,6 +1,6 @@
 import {Router} from 'express'
 import {ClassController} from '../controllers/ClassController'
-import {ClassModel} from '../models/ClassModel'
+import {ClassModel} from '../models/class'
 
 export const pingRoute = Router()
 const classController = new ClassController()

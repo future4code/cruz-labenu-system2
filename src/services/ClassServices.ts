@@ -1,6 +1,6 @@
 import {Class} from '../shared/entities/Class'
 import {validateClassSearchOptions} from '../utils/validators/validate-class-search-options'
-import {ClassModel} from '../models/ClassModel'
+import {ClassModel} from '../models/class'
 import {BaseServices} from './BaseServices'
 import {
   validateAllInClass,
@@ -8,7 +8,7 @@ import {
 } from '../utils/validators/validate-class'
 import {QueryOptions} from '../shared/types/QueryOptions'
 import {ApiError} from '../utils/ApiError'
-import {Model} from '../models/BaseModel'
+import {Model} from '../models/base'
 
 export class ClassServices extends BaseServices {
   model: ClassModel

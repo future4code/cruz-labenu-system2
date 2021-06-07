@@ -1,4 +1,4 @@
-import {BaseModel} from './BaseModel'
+import {BaseModel} from './base'
 import {Class} from '../shared/entities/Class'
 import {QueryOptions} from '../shared/types/QueryOptions'
 

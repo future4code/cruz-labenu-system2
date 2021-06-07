@@ -1,4 +1,4 @@
-import {Model, ModelConstructor} from '../models/BaseModel'
+import {Model, ModelConstructor} from '../models/base'
 import {QueryOptions} from '../shared/types/QueryOptions'
 import {v4 as uuid} from 'uuid'
 import {ApiError} from '../utils/ApiError'

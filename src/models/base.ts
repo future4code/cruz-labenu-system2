@@ -1,6 +1,6 @@
-import {Knex} from 'knex'
+import knex, {Knex} from 'knex'
 import {connection} from '../database'
-import {AllEntities, BaseEntitie} from '../shared/entities/AllEntities'
+import {AllEntities} from '../shared/entities/AllEntities'
 import {QueryOptions} from '../shared/types/QueryOptions'
 
 export interface Model {
@@ -36,7 +36,7 @@ export abstract class BaseModel implements Model {
   findAll = async (props: Partial<AllEntities>) => this.storage.where(props)
 
   findOne = async (props: Partial<AllEntities>) =>
-    this.storage.where(props).limit(1)
+    this.storage.where(props).first()
 
   update = async (id: string, entity: Partial<AllEntities>) =>
     this.storage.update(entity).where({id})
@@ -59,13 +59,7 @@ export abstract class BaseModel implements Model {
           : queries.where(`${key}`, 'like', `%${query[key]}%`)
       }
     }
-    // if (!queries) queries = this.storage
-    // if ('offset' in query) queries = queries.offset(query.offset)
-    // if ('limit' in query) queries = queries.limit(query.limit)
-    // if ('orderBy' in query && 'order' in query)
-    //   queries = queries.orderBy(query.orderBy, query.order)
-    // if ('orderBy' in query && !('order' in query))
-    //   queries = queries.limit(query.orderBy)
+    if (!queries) queries = this.storage
     queries = this.pagination(query, queries)
     const resultOfBaguncinha = await queries
     return resultOfBaguncinha
@@ -73,14 +67,19 @@ export abstract class BaseModel implements Model {
 
   pagination = (options: QueryOptions, query: Knex.QueryBuilder) => {
     if ('limit' in options) {
-      query = query.limit(options.limit)
+      query = query.limit(options.limit as number)
     }
     if ('offset' in options) {
-      query = query.offset(options.offset)
+      query = query.offset(options.offset as number)
     }
     if ('orderBy' in options) {
-      query = query.orderBy(options.orderBy, options.order || 'ASC')
+      query = query.orderBy(
+        options.orderBy as string,
+        (options.order as string) || 'ASC'
+      )
     }
     return query
   }
+
+  close = async () => connection.destroy()
 }
