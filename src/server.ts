@@ -1,16 +1,7 @@
 import express, {Express, RequestHandler, RouterOptions} from 'express'
 import cors from 'cors'
-import {pingRoute} from './routes/ping'
-import {classRoute} from './routes/class'
-import {studentRoute} from './routes/student'
-import {teacherRoute} from './routes/teacher'
-import {hobbiesRoute} from './routes/hobbies'
-import {skillsRoute} from './routes/skills'
-import {teacherSkillsRoute} from './routes/teacherSkills'
-import {studentHobbiesRoute} from './routes/studentHobbies'
 import {errorHandler} from './middlewares/errorHandler'
 import {notFound} from './routes/notFound'
-import {ClassController} from './controllers/class'
 import {validateId} from './utils/validators/validate-id'
 import {RouteSetup} from './@types/decorators'
 import * as Controllers from './controllers'
@@ -39,7 +30,7 @@ export class ExpressServer {
   }
 
   addControllers(controllers: Record<string, new () => Controller>) {
-    console.log('Setting controllers and routes...')
+    console.log('Setting controllers and routes...'.red)
     Object.values(controllers).forEach((controller: new () => Controller) => {
       const currentController = new controller()
       const router = express.Router()
@@ -48,13 +39,8 @@ export class ExpressServer {
         'route',
         controller.prototype
       )
-      console.log(`Route ${path}, using controller ${controller.name}`)
+      console.log(`Route ${path}, using controller ${controller.name}`.blue)
       routes.forEach(([method, route, handler]) => {
-        console.log(
-          `${method} ${path.slice(1)}${route} handler: ${
-            controller.name
-          }.${handler}`
-        )
         return router[method](
           route,
           currentController[handler as keyof Omit<Controller, 'services'>]
@@ -70,10 +56,6 @@ export class ExpressServer {
     this.app.use(cors())
     this.api.use(express.json())
     this.api.use(cors())
-    this.app.post('/', (req, res) => {
-      console.log('body: ', req.body)
-      res.send(req.body)
-    })
     this.app.use(morgan('dev'))
     this.app.use('/\\w+/:id', validateId)
     this.app.use(notFound)
@@ -89,7 +71,7 @@ export class ExpressServer {
 
   listen() {
     this.app.listen(this.port, () =>
-      console.log(`${this.message}, running at port ${this.port}`)
+      console.log(`${this.message}, running at port ${this.port}`.green)
     )
   }
 }

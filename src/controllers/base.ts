@@ -29,9 +29,8 @@ export abstract class BaseController implements Controller {
   @Route('get', '/:id')
   detail: RequestHandler = async (req, res) => {
     const {id} = req.params
-    const {data} = req.body
-    const dataUpdated = this.services.update(id, data)
-    res.send(dataUpdated)
+    const searchResult = await this.services.detail(id)
+    res.send(searchResult)
   }
 
   @Route('put', '/:id')

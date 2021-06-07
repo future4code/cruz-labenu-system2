@@ -3,6 +3,7 @@ import {QueryOptions} from '../shared/types/QueryOptions'
 import {v4 as uuid} from 'uuid'
 import {ApiError} from '../utils/ApiError'
 import {AllEntities, BaseEntitie} from '../shared/entities/AllEntities'
+import {validateId} from '../utils/validators'
 
 type Validators = {
   [key: string]: (args: any) => void
@@ -18,6 +19,7 @@ export type MessageResponse = {
 export interface Services {
   listAll: (query: QueryOptions) => Promise<void>
   create: (newData: Partial<AllEntities>) => Promise<void | number[]>
+  detail: (id: string) => Promise<any>
   update: (
     id: string,
     data: Omit<AllEntities, 'id'>
@@ -27,8 +29,12 @@ export interface Services {
 
 export abstract class BaseServices implements Services {
   abstract model: Model
+  protected validators: Validators
 
-  constructor(protected validators: Validators) {}
+  constructor(validators: Validators) {
+    this.validators = validators
+    this.validators.id = validateId
+  }
 
   listAll = async (query: QueryOptions) => {
     if (query) {
@@ -50,10 +56,11 @@ export abstract class BaseServices implements Services {
   }
 
   detail = async (id: string) => {
-    // this.validators.validateSomeInClass(data)
-    const isClassUpdated = true
-    if (isClassUpdated) {
-      return {message: 'updated success!'}
+    this.validators.id(id)
+    const searchResult = await this.model.findOne({id})
+    if (searchResult! && Object.keys(searchResult!).length) {
+      console.log(searchResult)
+      return searchResult
     }
     throw ApiError.badRequest({message: 'This user ID dont exist'})
   }
