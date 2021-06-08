@@ -1,5 +1,6 @@
 import {Knex} from 'knex'
 import {v4 as uuid} from 'uuid'
+import {cruzId} from './classes'
 
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
@@ -9,17 +10,48 @@ export async function seed(knex: Knex): Promise<void> {
   await knex('Teacher').insert([
     {
       id: uuid(),
-      name: 'Marcelino Sandroni',
-      email: 'marcelino.sandroni@gmail.com',
+      name: 'Matheus Gesualdo',
+      nickname: 'Matheuszinho',
+      email: 'matheus.gesualdo@labenu.com',
       password: '123123123',
-      birthDate: '1991-11-28'
+      gender: 'male',
+      birthDate: '1990-05-22',
+      picture: '',
+      side: 'back-end',
+      state: 'São Paulo',
+      country: 'Brazil',
+      description: '',
+      class_id: cruzId
     },
     {
       id: uuid(),
-      name: 'Isabelle Frederico',
-      email: 'isabelle.frederico@gmail.com',
+      name: 'Amanda',
+      nickname: 'Amandinha',
+      email: 'amandinha@labenu.com',
       password: '123123123',
-      birthDate: '1991-11-28'
+      gender: 'female',
+      birthDate: '1988-05-12',
+      picture: '',
+      side: 'full-stack',
+      state: 'Minas Gerais',
+      country: 'Brazil',
+      description: '',
+      class_id: cruzId
+    },
+    {
+      id: uuid(),
+      name: 'Leticia Chijo',
+      nickname: 'Chijo',
+      email: 'leticia.chijo@labenu.com',
+      password: '123123123',
+      gender: 'female',
+      birthDate: '1993-03-02',
+      picture: '',
+      side: 'front-end',
+      state: 'São Paulo',
+      country: 'Brazil',
+      description: '',
+      class_id: cruzId
     }
   ])
 }

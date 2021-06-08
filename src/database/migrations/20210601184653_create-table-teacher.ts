@@ -10,6 +10,7 @@ export async function up(knex: Knex): Promise<void> {
     table.enu('gender', ['male', 'female']).notNullable()
     table.date('birthDate')
     table.string('picture')
+    table.enu('side', ['front-end', 'back-end', 'full-stack'])
     table.string('state')
     table.string('country')
     table.text('description')
