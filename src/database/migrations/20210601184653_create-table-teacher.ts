@@ -15,7 +15,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string('country')
     table.text('description')
     table.uuid('class_id').index()
-    table.foreign('class_id').references('Class.id')
+    table.foreign('class_id').references('Class.id').onDelete('SET NULL')
   })
 }
 

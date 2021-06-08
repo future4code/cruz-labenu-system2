@@ -1,7 +1,7 @@
 import {Knex} from 'knex'
 import {v4 as uuid} from 'uuid'
-import {bikeId, danceId} from './hobbies'
-import {isabelleId, marcelinoId} from './students'
+import {bikeId, danceId} from './3-hobbies'
+import {isabelleId, marcelinoId} from './2-students'
 
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
@@ -10,12 +10,10 @@ export async function seed(knex: Knex): Promise<void> {
   // Inserts seed entries
   await knex('StudentHobbies').insert([
     {
-      id: uuid(),
       student_id: marcelinoId,
       hobbies_id: bikeId
     },
     {
-      id: uuid(),
       student_id: isabelleId,
       hobbies_id: danceId
     }

@@ -3,4 +3,4 @@ import knexfile from '../../knexfile'
 import {config} from 'dotenv'
 config()
 
-export const connection = knex(knexfile.development)
+export const connection = knex(knexfile.development as Object)

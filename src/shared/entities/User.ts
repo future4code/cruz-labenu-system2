@@ -6,6 +6,7 @@ export interface User {
   password: string
   gender: Gender
   birthDate: string
+  side: Side
   state?: string
   country?: string
   description?: string
@@ -13,3 +14,4 @@ export interface User {
 }
 
 export type Gender = 'male' | 'female'
+export type Side = 'front-end' | 'back-end' | 'full-stack'

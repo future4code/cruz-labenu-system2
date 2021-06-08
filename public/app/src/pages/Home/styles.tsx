@@ -5,7 +5,6 @@ export const Container = styled.div`
   margin: 0 auto;
   display: grid;
   grid: 80px 1fr / 1fr;
-  padding-bottom: 100px;
 `
 
 export const Title = styled.h1`
