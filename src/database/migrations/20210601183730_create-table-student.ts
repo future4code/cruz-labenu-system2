@@ -10,11 +10,12 @@ export async function up(knex: Knex): Promise<void> {
     table.enu('gender', ['male', 'female']).notNullable()
     table.date('birthDate').notNullable()
     table.string('picture')
+    table.enu('side', ['front-end', 'back-end', 'full-stack'])
     table.string('state')
     table.string('country')
     table.text('description')
     table.uuid('class_id').index()
-    table.foreign('class_id').references('Class.id')
+    table.foreign('class_id').references('Class.id').onDelete('SET NULL')
   })
 }
 

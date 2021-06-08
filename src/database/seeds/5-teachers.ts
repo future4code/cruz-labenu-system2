@@ -1,6 +1,6 @@
 import {Knex} from 'knex'
 import {v4 as uuid} from 'uuid'
-import {cruzId} from './classes'
+import {cruzId} from './1-classes'
 
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
