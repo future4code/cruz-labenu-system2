@@ -1,6 +1,5 @@
 import {RequestHandler} from 'express'
-import {AllEntities, BaseEntitie} from '../shared/entities/AllEntities'
-import {Route, MainRoute} from '../@types/decorators'
+import {Route} from '../@types/decorators'
 import {Services} from '../services/base'
 
 export interface Controller {
