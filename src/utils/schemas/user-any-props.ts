@@ -40,6 +40,11 @@ export const userAnyProps: JSONSchemaType<
       maxLength: 255,
       nullable: true
     },
+    side: {
+      type: 'string',
+      enum: ['front-end', 'back-end', 'full-stack'],
+      nullable: true
+    },
     state: {type: 'string', minLength: 3, maxLength: 20, nullable: true},
     country: {type: 'string', minLength: 3, maxLength: 20, nullable: true},
     description: {type: 'string', minLength: 10, maxLength: 500, nullable: true}

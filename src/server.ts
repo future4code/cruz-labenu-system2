@@ -56,7 +56,7 @@ export class ExpressServer {
     this.api.use(express.json())
     this.api.use(cors())
     this.app.use(morgan('dev'))
-    this.api.use('/\\w+/:id', validateIdInRoutes)
+    this.api.use('/^(?!/user/)\\w+/:id', validateIdInRoutes)
     this.app.use(errorHandler)
   }
 
