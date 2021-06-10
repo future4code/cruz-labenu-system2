@@ -1,13 +1,13 @@
 import {BaseController} from './base'
 import {MainRoute} from '../@types/decorators'
 import {ActivityServices} from '../services/activity'
-import {HobbyModel} from '../models/hobby'
+import {SkillModel} from '../models/skill'
 
-@MainRoute('/hobby')
-export class HobbyController extends BaseController {
+@MainRoute('/skill')
+export class SKillController extends BaseController {
   services: ActivityServices
   constructor() {
     super()
-    this.services = new ActivityServices(HobbyModel)
+    this.services = new ActivityServices(SkillModel)
   }
 }

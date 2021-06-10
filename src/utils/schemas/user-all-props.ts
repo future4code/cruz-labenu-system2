@@ -11,6 +11,7 @@ export const userAllProps: JSONSchemaType<Omit<User, 'id' | 'class_id'>> = {
       password: '123456',
       gender: 'male',
       birthDate: '1991-11-28',
+      side: 'full-stack',
       picture: 'urlsldfjlsdflk',
       state: 'São Paulo',
       country: 'Brazil',
@@ -37,6 +38,10 @@ export const userAllProps: JSONSchemaType<Omit<User, 'id' | 'class_id'>> = {
       minLength: 6,
       maxLength: 255,
       nullable: true
+    },
+    side: {
+      type: 'string',
+      enum: ['front-end', 'back-end', 'full-stack']
     },
     state: {type: 'string', minLength: 3, maxLength: 20, nullable: true},
     country: {type: 'string', minLength: 3, maxLength: 20, nullable: true},
