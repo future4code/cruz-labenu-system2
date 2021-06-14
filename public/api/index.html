@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>API</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Labenu System API Version 1.0</h1>
+    <h2>End Points</h2>
+    
+    <div class="endpoint-container">
+      <div class="endpoint">
+        <h3>Class</h3>
+        <ul>
+          <li> <a href='/class'>GET /class</a> <strong>list all classes</strong></li>
+          <li> <a href='/class?name=cruz'>GET /class?name=cruz</a> <strong>search class by name</strong></li>
+          <li> <a href='/class'>POST /class</a> <strong>create a new class</strong></li>
+          <li> <a href='/class/cruz'>GET /class/:name</a> <strong>list class details</strong></li>
+          <li> <a href='/class/cruz'>PUT /class/:name</a> <strong>update class</strong></li>
+          <li> <a href='/class/cruz'>DELETE /class/:name</a> <strong>delete class</strong></li>
+          <li> <a href='/class/cruz/students'>GET /class/:name/students</a> <strong>list all students in class</strong></li>
+          <li> <a href='/class/cruz/teachers'>GET /class/:name/teachers</a> <strong>list all teachers in class</strong></li>
+        </ul>
+      </div>
+      
+      <div class="endpoint">
+        <h3>Students</h3>
+        <ul>
+          <li> <a href='/student'>GET /student</a> <strong>list all students</strong></li>
+          <li> <a href='/student?name=mar&age=28'>GET /student?name=mar&age=28</a> <strong>search student by name or age</strong></li>
+          <li> <a href='/student'>POST /student</a> <strong>create a new student</strong></li>
+          <li> <a href='/student/id'>GET /student/id</a> <strong>list student details</strong></li>
+          <li> <a href='/student/id'>PUT /student/id</a> <strong>update student</strong></li>
+          <li> <a href='/student/id'>DELETE /student/id</a> <strong>delete student</strong></li>
+          <li> <a href='/student/id/class'>GET /student/id/class</a> <strong>get class of student</strong></li>
+          <li> <a href='/student/id/class'>PUT /student/id/class</a> <strong>change the student class</strong></li>
+          <li> <a href='/student/id/class'>DELETE /student/id/class</a> <strong>remove student from current class</strong></li>
+          <li> <a href='/student/id/hobbies'>GET /student/students</a> <strong>list student hobbies</strong></li>
+          <li> <a href='/student/id/hobbies'>POST /student/id/hobbies</a> <strong>add new hobbie for student</strong></li>
+          <li> <a href='/student/id/hobbies'>PATCH /student/id/hobbies</a> <strong>remove a hobbie from student</strong></li>
+          <li> <a href='/student/id/hobbies'>DELETE /student/id/hobbies</a> <strong>delete all student hobbies</strong></li>
+          <li> <a href='/student/id/teachers'>GET /student/id/teachers</a> <strong>list all teachers of the student</strong></li>
+        </ul>
+      </div>
+        
+      <div class="endpoint">
+        <h3>Teachers</h3>
+        <ul>
+          <li> <a href='/teachers'>GET /teachers</a></li>
+          <li> <a href='/teachers'>POST /teachers</a> <strong>create a new teacher</strong></li>
+          <li> <a href='/teachers/id'>PUT /teachers/id</a> <strong>update teacher</strong></li>
+          <li> <a href='/teachers/id'>DELETE /teachers/id</a> <strong>delete teacher</strong></li>
+        </ul>
+      </div>
+
+      <div class="endpoint">
+        <h3>Hobbies</h3>
+        <ul>
+          <li> <a href='/hobbies'>GET /hobbies</a></li>
+          <li> <a href='/hobbies'>POST /hobbies</a> <strong>create a new hobby</strong></li>
+          <li> <a href='/hobbies/id'>PUT /hobbies/id</a> <strong>update hobby</strong></li>
+          <li> <a href='/hobbies/id'>DELETE /hobbies/id</a> <strong>delete hobby</strong></li>
+          <li> <a href='/hobbies/name'>GET /hobbies/name</a> <strong>list all students in hobbies</strong></li>
+        </ul>
+      </div>
+
+      <div class="endpoint">
+        <h3>Skills</h3>
+        <ul>
+          <li> <a href='/skills'>GET /skills</a></li>
+          <li> <a href='/skills'>POST /skills</a> <strong>create a new skill</strong></li>
+          <li> <a href='/skills/id'>PUT /skills/id</a> <strong>update skill</strong></li>
+          <li> <a href='/skills/id'>DELETE /skills/id</a> <strong>delete skill</strong></li>
+          <li> <a href='/skills/name'>GET /skills/name</a> <strong>list all teachers in skills</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
